@@ -1,0 +1,2 @@
+Built-in image_gen, AI-assisted composite using three user-provided device photographs, 2026-09-08.
+Prompt: Replace only right-hand rover in existing 3:1 lab banner with the user device; preserve yellow lamp above single camera lens, black gimbal, layered black chassis, exposed green computing board, wiring and rubber tires. Preserve workbench, left modules, background and lighting.

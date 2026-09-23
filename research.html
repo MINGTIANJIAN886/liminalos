@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Liminal 灵眸技术与研究：面向自主载体的智能任务执行技术体系、系统架构、核心机制、研究验证与合作团队。" />
+  <title>技术与研究 | Liminal 灵眸</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="stylesheet" href="subpage.css" />
+  <link rel="stylesheet" href="assets/css/logo-theme.css" />
+</head>
+<body class="research-page">
+  <div class="page">
+    <header class="topbar">
+      <nav class="nav" aria-label="主导航">
+        <a class="nav-brand-text site-logo" href="index.html" aria-label="Liminal 灵眸首页"><span class="site-logo-stack" aria-hidden="true"><img class="site-logo-layer site-logo-layer--light" src="assets/media/liminal-logo-header-light.png" alt="" /><img class="site-logo-layer site-logo-layer--dark" src="assets/media/liminal-logo-header-dark.png" alt="" /></span></a>
+        <div class="links nav-primary">
+          <a href="index.html">系统介绍</a>
+          <a href="scenes.html">功能实录</a>
+          <div class="nav-dropdown">
+            <a class="active nav-dropdown-trigger" href="research.html" aria-haspopup="true">技术研究</a>
+            <div class="nav-dropdown-menu" aria-label="技术与研究页内导航">
+              <a href="#concept"><strong>技术体系</strong></a>
+              <a href="#architecture"><strong>系统架构</strong></a>
+              <a href="#mechanisms"><strong>核心机制</strong></a>
+              <a href="#research-results"><strong>代表成果</strong></a>
+            </div>
+          </div>
+          <a href="about.html">关于我们</a>
+        </div>
+        <div class="links nav-secondary">
+          <a href="model-market/index.html">模型广场</a>
+          <a class="nav-action" href="login.html">云台登录</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="topic-hero topic-hero-research">
+        <div class="topic-hero-media" aria-hidden="true"></div>
+        <div class="topic-hero-frost" aria-hidden="true"></div>
+        <div class="wrap topic-hero-copy reveal">
+          <span class="topic-hero-label">Liminal · Technology &amp; Research</span>
+          <h1>技术研究</h1>
+          <p>从统一世界状态，到自主任务执行闭环</p>
+        </div>
+        <a class="topic-scroll-cue" href="#concept" aria-label="继续查看技术研究"><i></i></a>
+      </section>
+
+      <section class="cognition-scroll" id="concept" data-cognition-scroll>
+        <div class="wrap">
+          <header class="cognition-scroll-heading reveal">
+            <div class="kicker">AUTONOMOUS TASK TECHNOLOGY</div>
+            <h1>自主任务智能执行体系</h1>
+            <p>以持续更新的现场状态为基础，理解任务、组织能力，并根据执行反馈动态调整。</p>
+          </header>
+        </div>
+        <div class="cognition-story" data-cognition-story>
+          <div class="wrap cognition-scroll-stage">
+          <nav class="cognition-scroll-progress" aria-label="技术章节导航">
+            <a class="is-active" href="#world-state" data-cognition-label="0"><span>01</span>状态底座</a>
+            <a href="#task-cognition" data-cognition-label="1"><span>02</span>任务认知</a>
+            <a href="#orchestration" data-cognition-label="2"><span>03</span>任务与能力编排</a>
+            <a href="#execution-loop" data-cognition-label="3"><span>04</span>反馈与动态调整</a>
+          </nav>
+
+          <div class="cognition-scroll-panels">
+            <article class="cognition-scroll-panel is-active" id="world-state" data-cognition-panel="0">
+              <figure><img src="assets/media/research-concepts/world-state-v3.png" alt="设备、空间、任务和数据被组织到统一世界状态的概念插画" /></figure>
+              <div class="cognition-panel-copy"><span>01 · WORLD STATE</span><h3>统一世界状态</h3><p>将设备状态、空间关系、任务进度、现场事件和可调用能力组织到同一任务环境，为认知判断、任务规划和资源调度提供持续更新的状态基础。</p><div class="cognition-keywords"><i>多源数据融合</i><i>空间与任务建模</i><i>状态持续更新</i></div></div>
+            </article>
+            <article class="cognition-scroll-panel" id="task-cognition" data-cognition-panel="1">
+              <figure><img src="assets/media/research-concepts/task-cognition-v3.png" alt="系统融合现场感知、历史记录和领域知识形成任务判断的概念插画" /></figure>
+              <div class="cognition-panel-copy"><span>02 · TASK COGNITION</span><h3>任务认知与证据推理</h3><p>系统围绕任务目标理解现场环境，综合实时感知、历史记录与领域知识形成判断，并将关键依据转化为后续规划和执行可直接使用的结构化信息。</p><div class="cognition-keywords"><i>环境理解</i><i>多源证据融合</i><i>判断结果结构化</i></div></div>
+            </article>
+            <article class="cognition-scroll-panel" id="orchestration" data-cognition-panel="2">
+              <figure><img src="assets/media/research-concepts/orchestration-v3.png" alt="系统选择模型、技能、工具和设备并组合执行能力的概念插画" /></figure>
+              <div class="cognition-panel-copy"><span>03 · OS ORCHESTRATION</span><h3>任务与能力编排</h3><p>Liminal 灵眸将目标拆解为可执行任务，根据能力描述、设备状态、空间位置和安全约束，选择并组合Agent、模型、技能、工具与物理设备。</p><div class="cognition-keywords"><i>任务分解</i><i>能力装配</i><i>跨资源调度</i></div></div>
+            </article>
+            <article class="cognition-scroll-panel" id="execution-loop" data-cognition-panel="3">
+              <figure><img src="assets/media/research-concepts/execution-loop-v3.png" alt="云端任务下发到机器人、无人机和车辆并持续回传状态的概念插画" /></figure>
+              <div class="cognition-panel-copy"><span>04 · EXECUTION LOOP</span><h3>自主任务执行闭环</h3><p>数字系统生成的任务由机器人、无人机和软件工具执行，现场证据与阶段结果持续回传；系统据此调整计划、切换资源并完成结果验证和过程追溯。</p><div class="cognition-keywords"><i>虚实协同执行</i><i>动态重规划</i><i>验证与追溯</i></div></div>
+            </article>
+          </div>
+        </div>
+        </div>
+      </section>
+
+      <section class="section research-system-logic" id="architecture">
+        <div class="wrap">
+          <div class="section-head reveal"><div><div class="kicker">System Architecture</div><h2>系统整体运行逻辑</h2></div></div>
+          <div class="system-map reveal" aria-label="Liminal 灵眸连接任务目标、载体设备、数据环境与智能能力">
+            <div class="system-map-visual orchestration-map">
+              <svg class="orchestration-links" viewBox="0 0 1200 680" preserveAspectRatio="none" aria-hidden="true">
+                <defs><marker id="researchOrchestrationArrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1L7 4L1 7" fill="none" stroke="#5b89b2" stroke-width="1.15"/></marker><marker id="researchOrchestrationArrowSoft" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="4" markerHeight="4" orient="auto"><path d="M1 1L7 4L1 7" fill="none" stroke="#91b5c7" stroke-width="1.1"/></marker></defs>
+                <path class="orchestration-link is-input is-primary" d="M600 230 C600 222 600 211 600 202" marker-end="url(#researchOrchestrationArrow)"/>
+                <path class="orchestration-link is-resource is-primary" d="M600 506 C600 480 600 450 600 423" marker-end="url(#researchOrchestrationArrow)"/>
+                <path class="orchestration-link is-branch" d="M290 495 C363 448 473 430 539 400" marker-end="url(#researchOrchestrationArrow)"/>
+                <path class="orchestration-link is-branch" d="M840 495 C775 448 709 430 661 400" marker-end="url(#researchOrchestrationArrow)"/>
+                <path class="orchestration-link is-capability-transfer" d="M340 578 C405 618 466 620 510 590" marker-end="url(#researchOrchestrationArrowSoft)"/>
+                <path class="orchestration-link is-execution is-primary" d="M924 515 C1020 525 1100 418 1060 354" marker-end="url(#researchOrchestrationArrow)"/>
+                <path class="orchestration-link is-feedback is-primary" d="M1008 274 C930 210 785 190 681 270" marker-end="url(#researchOrchestrationArrow)"/>
+                <circle class="orchestration-flow-dot is-input" r="2.7" visibility="hidden"><set attributeName="visibility" to="visible" begin="0s" dur="indefinite"/><animateMotion begin="0s" dur="10s" repeatCount="indefinite" path="M600 230 C600 222 600 211 600 202"/></circle>
+                <circle class="orchestration-flow-dot is-resource" r="2.7" visibility="hidden"><set attributeName="visibility" to="visible" begin="2s" dur="indefinite"/><animateMotion begin="2s" dur="11s" repeatCount="indefinite" path="M600 506 C600 480 600 450 600 423"/></circle>
+                <circle class="orchestration-flow-dot is-branch" r="2.3" visibility="hidden"><set attributeName="visibility" to="visible" begin="3s" dur="indefinite"/><animateMotion begin="3s" dur="13s" repeatCount="indefinite" path="M290 495 C363 448 473 430 539 400"/></circle>
+                <circle class="orchestration-flow-dot is-branch" r="2.3" visibility="hidden"><set attributeName="visibility" to="visible" begin="6s" dur="indefinite"/><animateMotion begin="6s" dur="13s" repeatCount="indefinite" path="M840 495 C775 448 709 430 661 400"/></circle>
+                <circle class="orchestration-flow-dot is-execution" r="2.7" visibility="hidden"><set attributeName="visibility" to="visible" begin="4s" dur="indefinite"/><animateMotion begin="4s" dur="14s" repeatCount="indefinite" path="M924 515 C1020 525 1100 418 1060 354"/></circle>
+                <circle class="orchestration-flow-dot is-feedback" r="2.7" visibility="hidden"><set attributeName="visibility" to="visible" begin="6s" dur="indefinite"/><animateMotion begin="6s" dur="12s" repeatCount="indefinite" path="M1008 274 C930 210 785 190 681 270"/></circle>
+              </svg>
+              <div class="orchestration-node orchestration-input"><span class="orchestration-node-index">01 / TASK INPUT</span><strong>任务目标</strong></div>
+              <div class="orchestration-core"><span class="orchestration-core-ring" aria-hidden="true"></span><strong>Liminal 灵眸</strong><small>ORCHESTRATION</small><span class="orchestration-core-caption">理解 · 编排 · 调整</span></div>
+              <div class="orchestration-node orchestration-resource is-device"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="10" rx="3"/><circle cx="7" cy="18" r="1.5"/><circle cx="17" cy="18" r="1.5"/><path d="M8 7V4h8v3M8 12h8"/></svg><div><strong>载体与设备</strong><small>DEVICES</small></div></div>
+              <div class="orchestration-node orchestration-resource is-model"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/><circle cx="12" cy="12" r="4"/></svg><div><strong>模型与能力</strong><small>INTELLIGENCE</small></div></div>
+              <div class="orchestration-node orchestration-resource is-data"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v7c0 1.7 3.1 3 7 3s7-1.3 7-3V5M5 12v7c0 1.7 3.1 3 7 3s7-1.3 7-3v-7"/></svg><div><strong>数据与环境</strong><small>WORLD STATE</small></div></div>
+              <div class="orchestration-node orchestration-feedback"><span class="orchestration-node-index">EXECUTION / FEEDBACK</span><strong>状态回流与动态调整</strong></div>
+            </div>
+          </div>
+          <div class="workflow-timeline reveal" id="research-task-flow" aria-label="Liminal 灵眸任务流程">
+            <div class="workflow-timeline-track">
+              <ol>
+                <li class="is-active" tabindex="0" data-map-target="resources"><span class="workflow-timeline-index">01</span><h4>资源接入</h4></li>
+                <li tabindex="0" data-map-target="task"><span class="workflow-timeline-index">02</span><h4>任务理解</h4></li>
+                <li tabindex="0" data-map-target="orchestration"><span class="workflow-timeline-index">03</span><h4>能力编排</h4></li>
+                <li tabindex="0" data-map-target="adjustment"><span class="workflow-timeline-index">04</span><h4>执行调整</h4></li>
+                <li tabindex="0" data-map-target="feedback"><span class="workflow-timeline-index">05</span><h4>结果反馈</h4></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="mechanisms">
+
+        <div class="wrap">
+
+          <div class="section-head reveal"><div><div class="kicker">Core Mechanisms</div><h2>核心技术</h2></div></div>
+
+          <div class="key-mechanism-grid">
+
+            <article class="key-mechanism-card reveal">
+
+              <div class="mechanism-media mechanism-abstract" role="img" aria-label="用户请求经过任务理解，提取城市、时间和能力信息，形成结构化任务">
+
+                <svg viewBox="0 0 640 400" aria-hidden="true">
+
+                  <defs>
+
+                    <linearGradient id="abstractBg" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f8fafc"/><stop offset="1" stop-color="#eef2f6"/></linearGradient>
+
+                    <linearGradient id="understandFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#263b55"/><stop offset="1" stop-color="#304c6b"/></linearGradient>
+
+                    <filter id="softNodeShadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#243850" flood-opacity=".08"/></filter>
+
+                  </defs>
+
+                  <rect width="640" height="400" fill="url(#abstractBg)"/>
+
+                  <g fill="none" stroke="#bdc9d6" stroke-width="1" opacity=".6">
+
+                    <path d="M24 52 V32 H44 M596 32 H616 V52 M24 348 V368 H44 M596 368 H616 V348"/>
+
+                  </g>
+
+
+
+                  <g class="abstract-lines" fill="none" stroke="#aec3d7" stroke-width="2" stroke-linecap="round">
+
+                    <path d="M206 195 C226 195 236 198 252 200"/>
+
+                    <path class="understand-stem" d="M353 200 H372"/>
+
+                    <path class="branch-city" d="M372 200 C379 165 376 116 390 104"/>
+
+                    <path class="branch-time" d="M372 200 H390"/>
+
+                    <path class="branch-tool" d="M372 200 C379 235 376 284 390 296"/>
+
+                    <path class="merge-city" d="M512 104 C538 112 526 164 540 178"/>
+
+                    <path class="merge-time" d="M512 200 C522 200 530 200 540 200"/>
+
+                    <path class="merge-tool" d="M512 296 C538 288 526 236 540 222"/>
+
+                  </g>
+
+                  <g class="task-flow-highlights">
+
+                    <path pathLength="100" d="M372 200 C379 165 376 116 390 104 H512 C538 112 526 164 540 178"/>
+
+                    <path pathLength="100" d="M372 200 H512 C522 200 530 200 540 200"/>
+
+                    <path pathLength="100" d="M372 200 C379 235 376 284 390 296 H512 C538 288 526 236 540 222"/>
+
+                  </g>
+
+                  <g class="understand-split" filter="url(#softNodeShadow)">
+
+                    <circle cx="372" cy="200" r="9" fill="#ffffff" stroke="#759cce" stroke-width="2"/>
+
+                    <circle cx="372" cy="200" r="3.5" fill="#668fda"/>
+
+                  </g>
+
+                  <circle class="split-burst" cx="372" cy="200" r="7" fill="none" stroke="#759cce" stroke-width="2" opacity="0">
+
+                    <animate attributeName="r" from="7" to="22" dur=".9s" begin="splitSourceMotion.end" fill="remove"/>
+
+                    <animate attributeName="opacity" values="0;.7;0" dur=".9s" begin="splitSourceMotion.end" fill="remove"/>
+
+                  </circle>
+
+
+
+                  <g class="abstract-node node-request" filter="url(#softNodeShadow)">
+
+                    <path d="M42 158 H196 Q206 158 206 168 V222 Q206 232 196 232 H112 L100 242 V232 H42 Q32 232 32 222 V168 Q32 158 42 158 Z" fill="#ffffff" stroke="#aebdcd" stroke-width="1.5"/>
+
+                    <text x="119" y="196" fill="#10243a" font-size="19" font-weight="750" letter-spacing=".2" text-anchor="middle" dominant-baseline="middle">查询北京后天天气</text>
+
+                  </g>
+
+
+
+                  <g class="abstract-node node-understand" filter="url(#softNodeShadow)">
+
+                    <rect x="251" y="149" width="102" height="102" rx="12" fill="url(#understandFill)"/>
+
+                    <path d="M263 173 V161 H275 M329 239 H341 V227" fill="none" stroke="#93b4da" stroke-width="1.5"/>
+
+                    <text x="302" y="192" fill="#ffffff" font-size="15" font-weight="600" text-anchor="middle">理解</text>
+
+                    <text x="302" y="219" fill="#ffffff" font-size="19" font-weight="750" text-anchor="middle">任务</text>
+
+                  </g>
+
+
+
+                  <g class="abstract-node node-city" filter="url(#softNodeShadow)">
+
+                    <rect x="390" y="70" width="122" height="68" rx="8" fill="#ffffff" stroke="#b7c5d4"/>
+
+                    <circle cx="420" cy="104" r="8" fill="#7ca9e7"/><text x="438" y="99" fill="#64768a" font-size="12" font-weight="600">城市</text><text x="438" y="120" fill="#10243a" font-size="16" font-weight="750">北京</text>
+
+                  </g>
+
+                  <g class="abstract-node node-time" filter="url(#softNodeShadow)">
+
+                    <rect x="390" y="166" width="122" height="68" rx="8" fill="#ffffff" stroke="#b7c5d4"/>
+
+                    <circle cx="420" cy="200" r="8" fill="#68b8ae"/><text x="438" y="195" fill="#64768a" font-size="12" font-weight="600">时间</text><text x="438" y="216" fill="#10243a" font-size="16" font-weight="750">后天</text>
+
+                  </g>
+
+                  <g class="abstract-node node-tool" filter="url(#softNodeShadow)">
+
+                    <rect x="390" y="262" width="122" height="68" rx="8" fill="#ffffff" stroke="#b7c5d4"/>
+
+                    <circle cx="420" cy="296" r="8" fill="#e4aa72"/><text x="438" y="291" fill="#64768a" font-size="12" font-weight="600">能力</text><text x="438" y="312" fill="#10243a" font-size="15" font-weight="750">气象查询</text>
+
+                  </g>
+
+
+
+                  <g class="abstract-node node-output" filter="url(#softNodeShadow)">
+
+                    <rect x="540" y="158" width="86" height="84" rx="8" fill="#e7eef7" stroke="#8aa2bf"/>
+
+                    <circle cx="583" cy="187" r="7" fill="#5b9ce4"/>
+
+                    <text x="583" y="207" fill="#10243a" font-size="14" font-weight="750" text-anchor="middle">结构化</text>
+
+                    <text x="583" y="226" fill="#10243a" font-size="14" font-weight="750" text-anchor="middle">任务</text>
+
+                  </g>
+
+
+
+                  <circle class="flow-particle split-source-particle" r="5" fill="#346dc4" opacity="0">
+
+                    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.06;.98;1" dur="2.8s" begin="0s;splitSourceMotion.end+6.2s"/>
+
+                    <animateMotion id="splitSourceMotion" dur="2.8s" begin="0s;splitSourceMotion.end+6.2s" path="M206 195 C226 195 236 198 252 200 C286 200 326 200 353 200 H372"/>
+
+                  </circle>
+
+                  <circle class="flow-particle split-branch-particle particle-one" r="4.5" fill="#346dc4" opacity="0"><animate attributeName="opacity" values="1;1;0" keyTimes="0;.95;1" dur="4.8s" begin="splitSourceMotion.end"/><animateMotion dur="4.8s" begin="splitSourceMotion.end" path="M372 200 C379 165 376 116 390 104 H512 C538 112 526 164 540 178"/></circle>
+
+                  <circle class="flow-particle split-branch-particle particle-two" r="4.5" fill="#346dc4" opacity="0"><animate attributeName="opacity" values="1;1;0" keyTimes="0;.95;1" dur="4.8s" begin="splitSourceMotion.end"/><animateMotion dur="4.8s" begin="splitSourceMotion.end" path="M372 200 H512 C522 200 530 200 540 200"/></circle>
+
+                  <circle class="flow-particle split-branch-particle particle-three" r="4.5" fill="#346dc4" opacity="0"><animate attributeName="opacity" values="1;1;0" keyTimes="0;.95;1" dur="4.8s" begin="splitSourceMotion.end"/><animateMotion dur="4.8s" begin="splitSourceMotion.end" path="M372 200 C379 235 376 284 390 296 H512 C538 288 526 236 540 222"/></circle>
+
+                </svg>
+
+              </div>
+
+
+              <div class="mechanism-copy"><h3>智能体任务理解</h3><p>理解任务目标、范围与约束，完成任务拆解和目标推理。</p></div>
+            </article>
+            <article class="key-mechanism-card reveal">
+              <div class="mechanism-media experience-abstract" role="img" aria-label="知识、历史经验与当前状态从不同方向汇入中央节点，形成综合判断">
+                <svg viewBox="0 0 640 400" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="experienceBg" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#f3f5f7"/></linearGradient>
+                    <linearGradient id="decisionFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#e8eef5"/></linearGradient>
+                    <filter id="experienceShadow" x="-60%" y="-60%" width="220%" height="220%"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#243850" flood-opacity=".12"/></filter>
+                  </defs>
+                  <rect width="640" height="400" fill="url(#experienceBg)"/>
+                  <g class="experience-tracks" fill="none" stroke="#adbccc" stroke-width="1.6" stroke-linecap="round">
+                    <path d="M112 130 C184 130 236 154 294 188"/>
+                    <path d="M102 324 C182 320 240 286 302 240"/>
+                    <path d="M604 147 C522 150 464 168 398 194"/>
+                  </g>
+
+                  <g class="experience-source source-knowledge">
+                    <text x="48" y="80" fill="#284055" font-size="20" font-weight="750">知识</text>
+                    <text x="48" y="104" fill="#586b81" font-size="14" font-weight="550">规则与行业信息</text>
+                    <path class="source-glyph" d="M50 121 H104 M50 130 H90 M50 139 H112" stroke="#56799f" stroke-width="3" stroke-linecap="round"/>
+                  </g>
+                  <g class="experience-source source-history">
+                    <text x="50" y="278" fill="#284055" font-size="20" font-weight="750">历史经验</text>
+                    <text x="50" y="302" fill="#586b81" font-size="14" font-weight="550">任务记录与处置结果</text>
+                    <g class="source-glyph" fill="#56799f"><rect x="50" y="319" width="10" height="10" rx="2"/><rect x="69" y="319" width="10" height="10" rx="2" opacity=".75"/><rect x="88" y="319" width="10" height="10" rx="2" opacity=".5"/></g>
+                  </g>
+                  <g class="experience-source source-state">
+                    <text x="474" y="100" fill="#284055" font-size="20" font-weight="750">当前状态</text>
+                    <text x="474" y="124" fill="#586b81" font-size="14" font-weight="550">实时环境与载体信息</text>
+                    <path class="state-wave source-glyph" d="M504 147 H522 L531 138 L540 156 L549 147 H567 L576 141 L585 147 H604" fill="none" stroke="#56799f" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+                  </g>
+
+                  <g class="decision-visual" filter="url(#experienceShadow)">
+                    <circle class="decision-ring ring-outer" cx="342" cy="210" r="77" fill="none" stroke="#94b1d0" stroke-width="1.5" opacity=".25"/>
+                    <circle class="decision-ring ring-inner" cx="342" cy="210" r="65" fill="none" stroke="#547caa" stroke-width="2" stroke-dasharray="68 68" opacity=".5"/>
+                    <circle class="decision-core" cx="342" cy="210" r="54" fill="url(#decisionFill)" stroke="#6e8cad"/>
+                    <path d="M324 169 H360 M324 251 H360" stroke="#9ab7d8" stroke-width="1" opacity=".5"/>
+                  </g>
+                  <text x="342" y="203" fill="#586b81" font-size="16" font-weight="650" text-anchor="middle">综合</text>
+                  <text x="342" y="231" fill="#263b55" font-size="23" font-weight="780" text-anchor="middle">判断</text>
+
+                  <g class="experience-particle particle-knowledge" opacity="0"><rect x="-9" y="-2" width="18" height="4" rx="2" fill="#426fa7"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.04;.41;.44;1" dur="8s" repeatCount="indefinite"/><animateMotion rotate="auto" dur="8s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.44;1" calcMode="linear" path="M112 130 C184 130 236 154 294 188"/></g>
+                  <g class="experience-particle particle-knowledge particle-delay" opacity="0"><rect x="-6" y="-1.5" width="12" height="3" rx="1.5" fill="#7495bc"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.04;.41;.44;1" begin=".7s" dur="8s" repeatCount="indefinite"/><animateMotion rotate="auto" begin=".7s" dur="8s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.44;1" calcMode="linear" path="M112 130 C184 130 236 154 294 188"/></g>
+                  <circle class="experience-particle particle-history" r="4.5" fill="#426fa7" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.04;.41;.44;1" begin=".4s" dur="8s" repeatCount="indefinite"/><animateMotion begin=".4s" dur="8s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.44;1" calcMode="linear" path="M102 324 C182 320 240 286 302 240"/></circle>
+                  <circle class="experience-particle particle-history" r="3" fill="#7495bc" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.04;.41;.44;1" begin="1.1s" dur="8s" repeatCount="indefinite"/><animateMotion begin="1.1s" dur="8s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.44;1" calcMode="linear" path="M102 324 C182 320 240 286 302 240"/></circle>
+                  <circle class="experience-particle particle-state" r="4.5" fill="#426fa7" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.04;.41;.44;1" begin=".8s" dur="8s" repeatCount="indefinite"/><animateMotion begin=".8s" dur="8s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.44;1" calcMode="linear" path="M604 147 C522 150 464 168 398 194"/></circle>
+                </svg>
+              </div>
+              <div class="mechanism-copy"><h3>知识与经验增强</h3><p>结合行业知识、历史记录和任务经验，提高判断与执行能力。</p></div>
+            </article>
+            <article class="key-mechanism-card reveal">
+<div class="mechanism-media capability-abstract" role="img" aria-label="任务需求进入能力池，视觉模型、路径规划技能和巡检机器人被选择并汇聚成组合能力">
+                <svg viewBox="0 0 640 400" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="capabilityBg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f9fbfc"/><stop offset=".55" stop-color="#f1f5f5"/><stop offset="1" stop-color="#edf2f3"/></linearGradient>
+                    <linearGradient id="capabilityFlow" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#467680"/><stop offset=".52" stop-color="#5c8990"/><stop offset="1" stop-color="#467680"/></linearGradient>
+                    <filter id="capabilityShadow" x="-40%" y="-60%" width="180%" height="220%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#243850" flood-opacity=".1"/></filter>
+                  </defs>
+                  <rect width="640" height="400" fill="url(#capabilityBg)"/>
+                  <g fill="none" stroke="#bdc9d6" stroke-width="1" opacity=".6"><path d="M24 52 V32 H44 M596 32 H616 V52 M24 348 V368 H44 M596 368 H616 V348"/></g>
+
+                  <g class="capability-request" filter="url(#capabilityShadow)">
+                    <rect x="28" y="170" width="130" height="60" rx="8" fill="#ffffff" stroke="#c9d6e8"/>
+                    <text x="48" y="193" fill="#77869a" font-size="11" font-weight="600">任务需求</text>
+                    <text x="48" y="216" fill="#142940" font-size="16" font-weight="750">巡检异常区域</text>
+                  </g>
+                  <path d="M158 200 C180 200 190 200 208 200" fill="none" stroke="#aebed5" stroke-width="2" stroke-linecap="round"/>
+                  <circle class="request-signal" r="4.5" fill="#426fa7" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.03;.14;.16;1" dur="8s" repeatCount="indefinite"/><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.16;1" calcMode="linear" path="M158 200 C180 200 190 200 208 200"/></circle>
+
+                  <rect class="capability-pool" x="198" y="38" width="330" height="302" rx="12" fill="#ffffff" fill-opacity=".4" stroke="#bdcadc"/>
+                  <text x="216" y="58" fill="#718198" font-size="12" font-weight="700">可调用能力池 · 按需选择</text>
+                  <g class="capability-entry-lines" fill="none" stroke="#91a9c7" stroke-width="2" stroke-linecap="round">
+                    <path class="entry-model" d="M208 200 C246 150 288 104 344 89"/>
+                    <path class="entry-skill" d="M208 200 C224 200 236 201 250 201"/>
+                    <path class="entry-device" d="M208 200 C252 246 316 282 376 295"/>
+                  </g>
+
+                  <g class="capability-node standby node-map">
+                    <rect x="218" y="70" width="102" height="48" rx="7" fill="#f7f9fc" stroke="#d7dfeb"/>
+                    <circle cx="239" cy="94" r="7" fill="#b4becb"/><text x="254" y="99" fill="#738196" font-size="13" font-weight="650">地图工具</text>
+                  </g>
+                  <g class="capability-node selected selected-model" filter="url(#capabilityShadow)">
+                    <rect x="344" y="62" width="112" height="54" rx="8" fill="#ffffff" stroke="#8fa8c6" stroke-width="1.5"/>
+                    <circle cx="367" cy="89" r="9" fill="#426fa7"/><path d="M362 89 H372 M367 84 V94" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                    <text x="385" y="83" fill="#586b81" font-size="11" font-weight="650">模型</text>
+                    <text x="385" y="102" fill="#18314d" font-size="14" font-weight="750">视觉识别</text>
+                  </g>
+                  <g class="capability-node standby node-sensor">
+                    <rect x="224" y="273" width="104" height="48" rx="7" fill="#f7f9fc" stroke="#d7dfeb"/>
+                    <circle cx="245" cy="297" r="7" fill="#b4becb"/><text x="260" y="302" fill="#738196" font-size="13" font-weight="650">传感器</text>
+                  </g>
+                  <g class="capability-node selected selected-skill" filter="url(#capabilityShadow)">
+                    <rect x="250" y="174" width="118" height="54" rx="8" fill="#ffffff" stroke="#8fa8c6" stroke-width="1.5"/>
+                    <circle cx="273" cy="201" r="9" fill="#426fa7"/><path d="M268 201 L272 205 L279 196" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <text x="291" y="195" fill="#586b81" font-size="11" font-weight="650">技能</text>
+                    <text x="291" y="214" fill="#18314d" font-size="14" font-weight="750">路径规划</text>
+                  </g>
+                  <g class="capability-node standby node-drone">
+                    <rect x="432" y="144" width="92" height="48" rx="7" fill="#f7f9fc" stroke="#d7dfeb"/>
+                    <circle cx="453" cy="168" r="7" fill="#b4becb"/><text x="468" y="173" fill="#738196" font-size="13" font-weight="650">无人机</text>
+                  </g>
+                  <g class="capability-node selected selected-device" filter="url(#capabilityShadow)">
+                    <rect x="376" y="268" width="128" height="54" rx="8" fill="#ffffff" stroke="#8fa8c6" stroke-width="1.5"/>
+                    <circle cx="399" cy="295" r="9" fill="#426fa7"/><rect x="395" y="291" width="8" height="7" rx="2" fill="#fff"/><circle cx="397" cy="300" r="1.5" fill="#fff"/><circle cx="402" cy="300" r="1.5" fill="#fff"/>
+                    <text x="417" y="289" fill="#586b81" font-size="11" font-weight="650">载体</text>
+                    <text x="417" y="308" fill="#18314d" font-size="14" font-weight="750">巡检机器人</text>
+                  </g>
+
+                  <g class="capability-connectors" fill="none" stroke-linecap="round">
+                    <path class="connector-model" d="M456 89 C500 90 500 158 526 187" stroke="#426fa7" stroke-width="2.5"/>
+                    <path class="connector-skill" d="M368 201 C434 201 470 201 526 201" stroke="#426fa7" stroke-width="2.5"/>
+                    <path class="connector-device" d="M504 295 C530 280 516 238 526 215" stroke="#426fa7" stroke-width="2.5"/>
+                  </g>
+                  <circle class="capability-hub" cx="530" cy="201" r="13" fill="#ffffff" stroke="#7491b2" stroke-width="2"/>
+                  <circle cx="530" cy="201" r="5" fill="#426fa7"/>
+                  <path class="capability-output-flow" d="M543 201 H612" fill="none" stroke="url(#capabilityFlow)" stroke-width="6" stroke-linecap="round"/>
+                  <path class="capability-output-shine" d="M546 201 H609" fill="none" stroke="#ffffff" stroke-opacity=".52" stroke-width="2" stroke-linecap="round"/>
+                  <text x="578" y="178" fill="#405a72" font-size="13" font-weight="750" text-anchor="middle">执行能力</text>
+                </svg>
+              </div>
+              <div class="mechanism-copy"><h3>动态能力调用</h3><p>按任务需要组合载体、模型、技能与工具，形成执行能力。</p></div>
+            </article>
+            <article class="key-mechanism-card reveal">
+<div class="mechanism-media cross-space-abstract" role="img" aria-label="中央协同节点向无人车、无人机和机器人下发任务，不同载体响应后将状态回传">
+                <svg viewBox="0 0 640 400" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="crossSpaceBg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8fafc"/><stop offset="1" stop-color="#eef2f6"/></linearGradient>
+                    <linearGradient id="crossSpaceCore" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#809ebe"/><stop offset="1" stop-color="#a9bfd7"/></linearGradient>
+                    <filter id="spaceShadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#243850" flood-opacity=".1"/></filter>
+                  </defs>
+                  <rect width="640" height="400" fill="url(#crossSpaceBg)"/>
+                  
+
+                  <rect class="digital-layer" x="22" y="22" width="596" height="126" rx="12" fill="#ffffff" fill-opacity=".48" stroke="#d7e2ee"/>
+                  <text x="44" y="52" fill="#718299" font-size="12" font-weight="750" letter-spacing="1.2">DIGITAL SPACE · 数字空间</text>
+                  <g class="space-legend">
+                    <circle cx="477" cy="49" r="4" fill="#426fa7"/><text x="488" y="53" fill="#65778c" font-size="11" font-weight="650">任务下发</text>
+                    <circle cx="555" cy="49" r="3.5" fill="#f8fafc" stroke="#56788a" stroke-width="1.5"/><text x="566" y="53" fill="#65778c" font-size="11" font-weight="650">状态回流</text>
+                  </g>
+
+                  <g class="cloud-panel" filter="url(#spaceShadow)">
+                    <rect class="cloud-panel-shape" x="238" y="66" width="182" height="58" rx="10" fill="#2b435f" stroke="#6482a3"/>
+                    <path d="M258 96 C258 88 265 83 273 84 C277 76 290 76 294 85 C302 85 307 90 306 97 C305 103 300 106 293 106 H270 C263 106 258 103 258 96 Z" fill="url(#crossSpaceCore)"/>
+                    <text x="354" y="101" fill="#ffffff" font-size="17" font-weight="780" text-anchor="middle">云端协同</text>
+                  </g>
+
+                  <path class="space-boundary" d="M22 184 H618 V400 H22 Z" fill="#e6edf4" fill-opacity=".72"/>
+                  <path class="physical-contour contour-one" d="M40 246 H174 L198 234 H430 L454 246 H600" fill="none" stroke="#c4d0de" stroke-width="1.5"/>
+                  <path class="physical-contour contour-two" d="M40 270 H174 L198 258 H430 L454 270 H600" fill="none" stroke="#d2dce6" stroke-width="1.5"/>
+                  <text x="44" y="220" fill="#586b81" font-size="11" font-weight="750" letter-spacing="1.2">PHYSICAL SPACE · 物理空间</text>
+
+                  <g class="space-links" fill="none" stroke-linecap="round">
+                    <path class="space-link vehicle-link" d="M278 124 C244 170 186 225 132 270" stroke="#b2c3d6" stroke-width="2"/>
+                    <path class="space-link drone-link" d="M320 124 C320 158 320 190 320 220" stroke="#b2c3d6" stroke-width="2"/>
+                    <path class="space-link robot-link" d="M362 124 C402 170 460 226 508 274" stroke="#b2c3d6" stroke-width="2"/>
+                  </g>
+
+                  <g class="space-agent agent-vehicle" filter="url(#spaceShadow)">
+                    <ellipse cx="126" cy="320" rx="58" ry="18" fill="#d9e5f4" opacity=".7"/>
+                    <rect x="99" y="284" width="54" height="27" rx="5" fill="#516f92"/>
+                    <path d="M108 284 L117 272 H140 L149 284" fill="#8fa6c0"/>
+                    <circle cx="110" cy="313" r="6" fill="#4f6681"/><circle cx="143" cy="313" r="6" fill="#4f6681"/>
+                    <circle class="agent-status" cx="158" cy="277" r="6" fill="#56788a"/>
+                    <text x="126" y="350" fill="#20374e" font-size="16" font-weight="750" text-anchor="middle">无人车</text>
+                  </g>
+
+                  <g class="space-agent agent-drone" filter="url(#spaceShadow)">
+                    <ellipse cx="320" cy="286" rx="51" ry="14" fill="#dbe7ef" opacity=".64"/>
+                    <circle cx="320" cy="242" r="8" fill="#516f92"/>
+                    <path d="M292 226 L348 258 M348 226 L292 258" stroke="#516f92" stroke-width="5" stroke-linecap="round"/>
+                    <circle cx="292" cy="226" r="7" fill="none" stroke="#6c88a9" stroke-width="2"/><circle cx="348" cy="226" r="7" fill="none" stroke="#6c88a9" stroke-width="2"/><circle cx="292" cy="258" r="7" fill="none" stroke="#6c88a9" stroke-width="2"/><circle cx="348" cy="258" r="7" fill="none" stroke="#6c88a9" stroke-width="2"/>
+                    <circle class="agent-status" cx="354" cy="217" r="6" fill="#56788a"/>
+                    <text x="320" y="318" fill="#20374e" font-size="16" font-weight="750" text-anchor="middle">无人机</text>
+                  </g>
+
+                  <g class="space-agent agent-robot" filter="url(#spaceShadow)">
+                    <ellipse cx="514" cy="327" rx="50" ry="17" fill="#d5dfeb" opacity=".72"/>
+                    <rect x="502" y="278" width="24" height="20" rx="4" fill="#516f92"/>
+                    <circle cx="509" cy="287" r="2" fill="#fff"/><circle cx="520" cy="287" r="2" fill="#fff"/>
+                    <rect x="497" y="302" width="34" height="24" rx="5" fill="#8fa6c0"/>
+                    <path d="M497 307 L487 316 M531 307 L541 316" stroke="#516f92" stroke-width="5" stroke-linecap="round"/>
+                    <circle class="agent-status" cx="536" cy="277" r="6" fill="#56788a"/>
+                    <text x="514" y="355" fill="#20374e" font-size="16" font-weight="750" text-anchor="middle">机器人</text>
+                  </g>
+
+                  <circle class="space-particle task-particle" r="4.5" fill="#426fa7" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.03;.36;.38;1" begin="0s" dur="9s" repeatCount="indefinite"/><animateMotion begin="0s" dur="9s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.38;1" calcMode="linear" path="M278 124 C244 170 186 225 132 270"/></circle>
+                  <circle class="space-particle task-particle" r="4.5" fill="#426fa7" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.03;.36;.38;1" begin="0.3s" dur="9s" repeatCount="indefinite"/><animateMotion begin="0.3s" dur="9s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.38;1" calcMode="linear" path="M320 124 C320 158 320 190 320 220"/></circle>
+                  <circle class="space-particle task-particle" r="4.5" fill="#426fa7" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.03;.36;.38;1" begin="0.6s" dur="9s" repeatCount="indefinite"/><animateMotion begin="0.6s" dur="9s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.38;1" calcMode="linear" path="M362 124 C402 170 460 226 508 274"/></circle>
+                  <circle class="space-particle return-particle" r="4" fill="#f8fafc" stroke="#56788a" stroke-width="2" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.03;.36;.38;1" begin="4.3s" dur="9s" repeatCount="indefinite"/><animateMotion begin="4.3s" dur="9s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.38;1" calcMode="linear" path="M132 270 C186 225 244 170 278 124"/></circle>
+                  <circle class="space-particle return-particle" r="4" fill="#f8fafc" stroke="#56788a" stroke-width="2" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.03;.36;.38;1" begin="4.6s" dur="9s" repeatCount="indefinite"/><animateMotion begin="4.6s" dur="9s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.38;1" calcMode="linear" path="M320 220 C320 190 320 158 320 124"/></circle>
+                  <circle class="space-particle return-particle" r="4" fill="#f8fafc" stroke="#56788a" stroke-width="2" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.03;.36;.38;1" begin="4.8999999999999995s" dur="9s" repeatCount="indefinite"/><animateMotion begin="4.8999999999999995s" dur="9s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.38;1" calcMode="linear" path="M508 274 C460 226 402 170 362 124"/></circle>
+                </svg>
+              </div>
+              <div class="mechanism-copy"><h3>多载体协同</h3><p>连接数字系统与物理载体，让信息处理和现场执行形成闭环。</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section research-results-section" id="research-results">
+        <div class="wrap">
+          <div class="section-head research-results-head reveal"><div><div class="kicker">Representative Research</div><h2>代表性研究成果</h2></div></div>
+          <div class="pub-panel reveal">
+            <div class="pub-panel-head">
+              <span class="pub-panel-label">Selected Papers</span>
+              <span class="pub-panel-count"><strong>7</strong> 项成果 · 2025–2026</span>
+            </div>
+            <ol class="pub-list">
+              <li class="pub-item">
+                <div class="pub-meta"><b>Research</b><em>Benchmark</em></div>
+                <div class="pub-body">
+                  <h4 class="pub-title">PhyInfoEQA</h4>
+                  <p class="pub-authors">自主任务中的问答、证据获取与能力评测</p>
+                  <p class="pub-venue">面向环境理解、主动补证与现场信息获取的评测基准</p>
+                </div>
+                <div class="pub-keywords"><span>自主任务问答</span><span>证据获取</span><span>能力评测</span></div>
+              </li>
+              <li class="pub-item">
+                <div class="pub-meta"><b>Research</b><em>Method</em></div>
+                <div class="pub-body">
+                  <h4 class="pub-title">TriPMA</h4>
+                  <p class="pub-authors">复杂任务的可回答性判断、目标规划、证据获取与动态记忆</p>
+                  <p class="pub-venue">面向主动探索、持续判断与动态调整的智能体方法</p>
+                </div>
+                <div class="pub-keywords"><span>任务规划</span><span>主动探索</span><span>动态记忆</span></div>
+              </li>
+              <li class="pub-item">
+                <div class="pub-meta"><b>2026</b><em>ICRA</em></div>
+                <div class="pub-body">
+                  <h4 class="pub-title">SurveilNav: Collaborative Object Goal Navigation with Robot and Surveillance System</h4>
+                  <p class="pub-authors">Yu M, Wang Q（通讯）, et al.</p>
+                  <p class="pub-venue">International Conference on Robotics and Automation</p>
+                </div>
+                <div class="pub-keywords"><span>目标导航</span><span>机器人协同</span><span>监控系统</span></div>
+              </li>
+              <li class="pub-item">
+                <div class="pub-meta"><b>2026</b><em>ICRA</em></div>
+                <div class="pub-body">
+                  <h4 class="pub-title">MemOcc: Hierarchical Memory for Indoor Continuous Occupancy Mapping</h4>
+                  <p class="pub-authors">Yang Y, Lin Y, Guo L, Song L, Wang Q（通讯）, et al.</p>
+                  <p class="pub-venue">International Conference on Robotics and Automation</p>
+                </div>
+                <div class="pub-keywords"><span>连续占据建图</span><span>分层记忆</span><span>室内建图</span></div>
+              </li>
+              <li class="pub-item">
+                <div class="pub-meta"><b>2026</b><em>IEEE TMM</em></div>
+                <div class="pub-body">
+                  <h4 class="pub-title">TAS-DAQ: Task-Adaptive Sparse Prediction with Dense Query Auxiliary Supervisory for Efficient 3D Object Detection</h4>
+                  <p class="pub-authors">Yang Y, Song L, Wang Q（通讯）, et al.</p>
+                  <p class="pub-venue">IEEE Transactions on Multimedia</p>
+                </div>
+                <div class="pub-keywords"><span>3D目标检测</span><span>稀疏预测</span><span>任务自适应</span></div>
+              </li>
+              <li class="pub-item">
+                <div class="pub-meta"><b>2025</b><em>NeurIPS</em></div>
+                <div class="pub-body">
+                  <h4 class="pub-title">C-NAV: Towards self-evolving continual object navigation in open world</h4>
+                  <p class="pub-authors">Yu M, Zhu F, Liu W, Yang Y, Wang Q（通讯）, et al.</p>
+                  <p class="pub-venue">Advances in Neural Information Processing Systems</p>
+                </div>
+                <div class="pub-keywords"><span>连续目标导航</span><span>开放世界</span><span>自演化</span></div>
+              </li>
+              <li class="pub-item">
+                <div class="pub-meta"><b>2025</b><em>EAAI</em></div>
+                <div class="pub-body">
+                  <h4 class="pub-title">A Real-Time Multi-AGV Scheduling Approach with Long-Term Planning Under Persistent Resource Contention</h4>
+                  <p class="pub-authors">Zhang W, Wang Q, et al.</p>
+                  <p class="pub-venue">Engineering Applications of Artificial Intelligence</p>
+                </div>
+                <div class="pub-keywords"><span>多AGV调度</span><span>长期规划</span><span>资源竞争</span></div>
+              </li>
+            </ol>
+          </div>
+          <div class="research-links reveal"><span>论文与技术报告将在公开后补充链接</span><span>GitHub与相关资料整理中</span></div>
+        </div>
+      </section>
+
+      <section class="next-step">
+        <div class="wrap next-card reveal">
+          <div><h2>进一步了解 Liminal 灵眸</h2></div>
+          <div class="hero-actions"><a class="button secondary" href="about.html">了解项目团队</a><a class="button" href="login.html#apply">申请访问</a></div>
+        </div>
+      </section>
+    </main>
+
+    <footer><div class="wrap footer-inner"><a class="footer-logo" href="index.html" aria-label="Liminal 灵眸首页"><img src="assets/media/liminal-logo-footer.png" alt="Liminal 灵眸｜智驭众载・共赴未来" /></a><span>北京交通大学 · 北京市海淀区上园村3号 · wangqb6@outlook.com</span></div></footer>
+  </div>
+  <script src="subpage.js"></script>
+  <script src="account-store.js"></script>
+  <script src="account-nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+Built-in image_gen, AI-assisted illustrative scene, 2026-09-08.
+Prompt: photorealistic 3:1 university campus outdoor scene with compact white ground rover, airborne quadcopter and fixed camera sensor, spacious road and grass, natural light, no people, no sci-fi.

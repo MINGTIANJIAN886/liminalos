@@ -1,0 +1,5 @@
+﻿Asset: reality-smart-city-autonomous-network-v2.png
+Method: OpenAI built-in image generation
+Use case: homepage “Real-World Tasks” wide editorial visual
+Prompt summary: macro-scale, photorealistic aerial overview of a near-future East Asian smart city; layered roads and transit hub; multiple autonomous shuttles, delivery carriers and distant service drones; cool restrained blue-hour palette; realistic scale and perspective; no people, text, logos, HUD overlays, neon or cyberpunk styling.
+Generated: 2026-09-21

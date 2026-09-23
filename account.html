@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Liminal 灵眸账号中心：查看与修改账号资料、访问密码、权限范围，管理员可管理账号角色与状态。">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <title>账号中心｜Liminal 灵眸</title>
+  <link rel="stylesheet" href="account.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">Liminal 灵眸</a>
+      <button class="mobile-menu" id="mobileMenu" type="button" aria-expanded="false" aria-controls="topnav">菜单</button>
+      <nav class="topnav" id="topnav" aria-label="账号中心导航">
+        <a href="model-market/index.html">模型广场</a>
+        <a href="model-market/evaluation.html">评测中心</a>
+        <a href="model-market/competition.html">开放挑战</a>
+        <a class="current" href="account.html" aria-current="page">账号中心</a>
+      </nav>
+      <div class="top-actions">
+        <a class="home-link" href="index.html">返回官网</a>
+        <a class="workspace-link" href="login.html" id="topWorkspaceLink">进入工作台 ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="app">
+    <aside class="sidebar" aria-label="账号中心目录">
+      <div class="sidebar-scroll">
+        <div class="identity" id="identityCard" hidden>
+          <div class="identity-top">
+            <div class="identity-avatar" id="identityAvatar" aria-hidden="true">--</div>
+            <div class="identity-meta">
+              <strong id="identityName">—</strong>
+              <span id="identityLogin">—</span>
+            </div>
+          </div>
+          <div class="identity-badges">
+            <span class="badge plain" id="identityRole">—</span>
+            <span class="badge" id="identityStatus">—</span>
+          </div>
+        </div>
+
+        <p class="sidebar-title">ACCOUNT</p>
+        <nav class="scope-list" id="accountNav" aria-label="账号中心面板">
+          <button type="button" class="scope-item active" data-panel="overview">账号概览</button>
+          <button type="button" class="scope-item" data-panel="profile" data-capability="account.profile.read">资料与联系方式</button>
+          <button type="button" class="scope-item" data-panel="security" data-capability="account.security">安全与登录</button>
+          <button type="button" class="scope-item" data-panel="permission">权限范围</button>
+          <button type="button" class="scope-item" data-panel="admin" data-capability="account.directory" hidden>
+            账号管理<span class="scope-hint" id="adminCount"></span>
+          </button>
+        </nav>
+      </div>
+      <div class="sidebar-foot" id="sidebarFoot" hidden>
+        <button type="button" class="signout" id="signOutButton">退出登录</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <!-- 未登录：引导至登录页 -->
+      <section class="gate" id="gate" hidden>
+        <div class="gate-icon">
+          <svg viewBox="0 0 32 32"><path d="M16 4 4 9.5v7C4 23 9.2 27.4 16 29c6.8-1.6 12-6 12-12.5v-7L16 4Z"/><path d="M11.5 15.5 15 19l5.5-6"/></svg>
+        </div>
+        <h2>需要登录后访问账号中心</h2>
+        <p>账号中心用于查看与维护你的访问资料、登录凭据和权限范围。请先登录，或提交访问申请等待团队开通。</p>
+        <div class="gate-actions">
+          <a class="btn btn-primary" href="login.html">前往登录</a>
+          <a class="btn btn-outline" href="login.html#apply">申请访问</a>
+        </div>
+      </section>
+
+      <!-- 账号概览 -->
+      <section class="panel" id="panel-overview" hidden>
+        <div class="page-title">
+          <div>
+            <span class="eyebrow">ACCOUNT OVERVIEW</span>
+            <h1 id="overviewTitle">账号概览</h1>
+            <p>当前账号的身份、状态与访问记录。</p>
+          </div>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat"><span>账号状态</span><strong id="statStatus">—</strong><small id="statStatusNote">—</small></div>
+          <div class="stat"><span>账号角色</span><strong id="statRole">—</strong><small id="statRoleNote">—</small></div>
+          <div class="stat"><span>累计登录</span><strong id="statLogins">—</strong><small id="statLoginsNote">—</small></div>
+          <div class="stat"><span>会话有效期</span><strong id="statSession">—</strong><small id="statSessionNote">—</small></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>账号信息</h2>
+              <p>账号标识与创建时间由系统维护，资料内容可在「资料与联系方式」中修改。</p>
+            </div>
+            <span class="badge plain" id="overviewAlgo">—</span>
+          </div>
+          <div class="detail-grid">
+            <div><span>登录账号</span><strong id="ovLogin">—</strong></div>
+            <div><span>邮箱</span><strong id="ovEmail">—</strong></div>
+            <div><span>姓名</span><strong id="ovName">—</strong></div>
+            <div><span>单位 / 学校</span><strong id="ovUnit">—</strong></div>
+            <div><span>关注方向</span><strong id="ovDirection">—</strong></div>
+            <div><span>账号 ID</span><strong id="ovId">—</strong></div>
+            <div><span>创建时间</span><strong id="ovCreated">—</strong></div>
+            <div><span>资料更新</span><strong id="ovUpdated">—</strong></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>访问记录</h2>
+              <p>账号层操作轨迹，仅保留最近 200 条，用于排查访问问题。</p>
+            </div>
+          </div>
+          <ul class="log-list" id="overviewLog"></ul>
+        </div>
+      </section>
+
+      <!-- 资料与联系方式 -->
+      <section class="panel" id="panel-profile" hidden>
+        <div class="page-title">
+          <div>
+            <span class="eyebrow">PROFILE</span>
+            <h1>资料与联系方式</h1>
+            <p>团队会依据这些信息与你沟通访问开通与任务验证安排。</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>基本信息</h2>
+              <p>登录账号与账号 ID 不可修改；邮箱修改后需使用新邮箱登录。</p>
+            </div>
+          </div>
+          <form id="profileForm" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label for="pLogin">登录账号</label>
+                <input id="pLogin" name="login" type="text" disabled>
+                <span class="hint">由系统分配，如需变更请联系管理员。</span>
+              </div>
+              <div class="field">
+                <label for="pName">姓名</label>
+                <input id="pName" name="name" type="text" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="pUnit">单位 / 学校</label>
+                <input id="pUnit" name="unit" type="text" autocomplete="organization" required>
+              </div>
+              <div class="field">
+                <label for="pEmail">邮箱</label>
+                <input id="pEmail" name="email" type="email" autocomplete="email" required>
+              </div>
+              <div class="field">
+                <label for="pPhone">联系电话</label>
+                <input id="pPhone" name="phone" type="text" autocomplete="tel" placeholder="选填">
+              </div>
+              <div class="field">
+                <label for="pDirection">希望了解或验证的方向</label>
+                <select id="pDirection" name="direction"></select>
+              </div>
+              <div class="field full">
+                <label for="pNote">需求说明</label>
+                <textarea id="pNote" name="note" placeholder="简单说明希望体验的任务、设备或合作需求"></textarea>
+              </div>
+            </div>
+            <div class="form-actions">
+              <span class="spacer" id="profileMeta">—</span>
+              <button type="button" class="btn btn-quiet" id="profileReset">放弃修改</button>
+              <button type="submit" class="btn btn-primary" id="profileSubmit">保存资料</button>
+            </div>
+          </form>
+          <div class="notice" id="profileNotice" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- 安全与登录 -->
+      <section class="panel" id="panel-security" hidden>
+        <div class="page-title">
+          <div>
+            <span class="eyebrow">SECURITY</span>
+            <h1>安全与登录</h1>
+            <p>访问密码仅以不可逆摘要保存，团队无法查看你的原始密码。</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>修改访问密码</h2>
+              <p>修改成功后当前会话会自动轮换，其他设备上的登录需要重新验证。</p>
+            </div>
+          </div>
+          <form id="passwordForm" novalidate>
+            <div class="form-grid">
+              <div class="field full">
+                <label for="pCurrent">当前访问密码</label>
+                <input id="pCurrent" name="current" type="password" autocomplete="current-password" required>
+              </div>
+              <div class="field">
+                <label for="pNext">新访问密码</label>
+                <input id="pNext" name="next" type="password" autocomplete="new-password" required>
+                <span class="hint">至少 8 位，需同时包含字母与数字。</span>
+              </div>
+              <div class="field">
+                <label for="pConfirm">确认新访问密码</label>
+                <input id="pConfirm" name="confirm" type="password" autocomplete="new-password" required>
+              </div>
+            </div>
+            <div class="form-actions">
+              <span class="spacer">凭据算法：<b id="securityAlgo">—</b></span>
+              <button type="submit" class="btn btn-primary">更新密码</button>
+            </div>
+          </form>
+          <div class="notice" id="passwordNotice" aria-live="polite"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>登录保护</h2>
+              <p>系统对异常登录做自动限制，减少凭据被反复尝试的风险。</p>
+            </div>
+          </div>
+          <div class="detail-grid">
+            <div><span>连续失败上限</span><strong id="secLimit">—</strong></div>
+            <div><span>锁定策略</span><strong id="secLock">—</strong></div>
+            <div><span>当前失败计数</span><strong id="secFailed">—</strong></div>
+            <div><span>最近登录时间</span><strong id="secLastLogin">—</strong></div>
+            <div><span>会话过期时间</span><strong id="secSession">—</strong></div>
+            <div><span>数据存放位置</span><strong id="secStorage">—</strong></div>
+          </div>
+          <p class="card-foot" id="secStorageMode">—</p>
+        </div>
+      </section>
+
+      <!-- 权限范围 -->
+      <section class="panel" id="panel-permission" hidden>
+        <div class="page-title">
+          <div>
+            <span class="eyebrow">PERMISSIONS</span>
+            <h1>权限范围</h1>
+            <p>权限由账号角色决定，页面与操作均按能力项逐一校验。</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2 id="permTitle">当前角色能力</h2>
+              <p id="permDesc">—</p>
+            </div>
+            <span class="badge plain" id="permRole">—</span>
+          </div>
+          <div id="permList"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>角色与能力对照</h2>
+              <p>系统中定义的角色及其默认能力范围。</p>
+            </div>
+          </div>
+          <div id="roleMatrix"></div>
+        </div>
+      </section>
+
+      <!-- 账号管理（管理员） -->
+      <section class="panel" id="panel-admin" hidden>
+        <div class="page-title">
+          <div>
+            <span class="eyebrow">ACCOUNT ADMINISTRATION</span>
+            <h1>账号管理</h1>
+            <p>审核注册申请、调整账号角色与状态，并可在必要时重置访问密码。</p>
+          </div>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat"><span>账号总数</span><strong id="adminTotal">—</strong><small>含全部状态</small></div>
+          <div class="stat"><span>待审核</span><strong id="adminPending">—</strong><small>需确认需求后开通</small></div>
+          <div class="stat"><span>正常</span><strong id="adminActive">—</strong><small>可正常登录</small></div>
+          <div class="stat"><span>已限制</span><strong id="adminRestricted">—</strong><small>暂停或停用</small></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>账号列表</h2>
+              <p>按角色权重排序。为保护账号安全，不能调整本人账号的角色与状态。</p>
+            </div>
+            <button type="button" class="btn btn-outline" id="adminRefresh">刷新</button>
+          </div>
+          <div class="table-wrap">
+            <table class="grid">
+              <thead>
+                <tr>
+                  <th scope="col">账号</th>
+                  <th scope="col">角色</th>
+                  <th scope="col">状态</th>
+                  <th scope="col">最近登录</th>
+                  <th scope="col">创建时间</th>
+                  <th scope="col" style="text-align:right">操作</th>
+                </tr>
+              </thead>
+              <tbody id="adminBody"></tbody>
+            </table>
+          </div>
+          <div class="card-foot" id="adminStorageNote">—</div>
+        </div>
+
+        <div class="notice" id="adminNotice" aria-live="polite"></div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>北京交通大学 · 北京市海淀区上园村3号 · wangqb6@outlook.com</span>
+      <span><a href="login.html">登录</a> · <a href="login.html#apply">申请访问</a> · <a href="index.html">返回官网</a></span>
+    </div>
+  </footer>
+
+  <!-- 重置访问密码 -->
+  <dialog class="dialog-card" id="resetDialog" aria-labelledby="resetTitle">
+    <div class="dialog-card-inner">
+      <div class="dialog-top">
+        <div>
+          <small>PASSWORD RESET</small>
+          <h2 id="resetTitle">重置访问密码</h2>
+          <p id="resetDesc">为账号设置一个临时密码，请通过安全渠道告知本人。</p>
+        </div>
+        <button type="button" class="close" data-close aria-label="关闭重置密码">×</button>
+      </div>
+      <form id="resetForm" novalidate>
+        <div class="form-grid">
+          <div class="field full">
+            <label for="rPassword">临时访问密码</label>
+            <input id="rPassword" name="next" type="text" autocomplete="off" required>
+            <span class="hint">至少 8 位，需同时包含字母与数字。</span>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-quiet" data-close>取消</button>
+          <button type="submit" class="btn btn-primary">确认重置</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <script src="account-store.js"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      const Store = window.AccountStore;
+      const $ = (selector) => document.querySelector(selector);
+      const esc = Store.escapeHTML;
+
+      const ACTION_LABELS = {
+        seed: "初始化演示数据",
+        register: "提交注册申请",
+        login: "登录成功",
+        login_failed: "登录失败",
+        login_blocked: "登录被拒绝",
+        logout: "退出登录",
+        lock: "触发登录锁定",
+        profile_update: "更新个人资料",
+        password_change: "修改访问密码",
+        password_reset: "管理员重置密码",
+        status_change: "调整账号状态",
+        role_change: "调整账号角色"
+      };
+
+      const state = { user: null, accounts: [], activePanel: "overview", resetTargetId: null };
+
+      /* ---------------------------------------------------------- 工具 */
+
+      function formatTime(value, withTime) {
+        if (!value) return "—";
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return "—";
+        const pad = (n) => String(n).padStart(2, "0");
+        const base = date.getFullYear() + "-" + pad(date.getMonth() + 1) + "-" + pad(date.getDate());
+        return withTime === false ? base : base + " " + pad(date.getHours()) + ":" + pad(date.getMinutes());
+      }
+
+      function relativeTime(value) {
+        if (!value) return "尚无记录";
+        const diff = Date.now() - Date.parse(value);
+        if (Number.isNaN(diff)) return "尚无记录";
+        const minutes = Math.floor(diff / 60000);
+        if (minutes < 1) return "刚刚";
+        if (minutes < 60) return minutes + " 分钟前";
+        const hours = Math.floor(minutes / 60);
+        if (hours < 24) return hours + " 小时前";
+        return Math.floor(hours / 24) + " 天前";
+      }
+
+      function initials(name) {
+        const text = String(name || "").trim();
+        if (!text) return "--";
+        const latin = text.replace(/[^A-Za-z]/g, "");
+        if (latin.length >= 2) return latin.slice(0, 2).toUpperCase();
+        return text.slice(0, 2);
+      }
+
+      function notice(element, message, tone) {
+        element.className = "notice show" + (tone ? " " + tone : "");
+        element.textContent = message;
+      }
+
+      function hideNotice(element) {
+        element.className = "notice";
+        element.textContent = "";
+      }
+
+      function statusBadgeTone(user) {
+        return user.statusTone || "muted";
+      }
+
+      /* ---------------------------------------------------------- 渲染 */
+
+      function renderIdentity() {
+        const user = state.user;
+        const loggedIn = Boolean(user);
+        $("#gate").hidden = loggedIn;
+        $("#identityCard").hidden = !loggedIn;
+        $("#sidebarFoot").hidden = !loggedIn;
+        // 未登录时整体收掉侧栏，避免出现空导航。
+        document.querySelector(".app").classList.toggle("is-guest", !loggedIn);
+        if (!loggedIn) {
+          document.querySelectorAll(".panel").forEach((panel) => { panel.hidden = true; });
+          return;
+        }
+
+        $("#identityAvatar").textContent = initials(user.name);
+        $("#identityName").textContent = user.name;
+        $("#identityLogin").textContent = user.login + " · " + user.email;
+        $("#identityRole").textContent = user.roleLabel;
+        const statusEl = $("#identityStatus");
+        statusEl.textContent = user.statusLabel;
+        statusEl.className = "badge " + statusBadgeTone(user);
+
+        document.querySelectorAll("#accountNav [data-capability]").forEach((item) => {
+          const allowed = Store.can(user, item.dataset.capability);
+          item.hidden = !allowed;
+          item.disabled = !allowed;
+        });
+
+        $("#topWorkspaceLink").textContent = user.name + " ↗";
+      }
+
+      function renderOverview() {
+        const user = state.user;
+        if (!user) return;
+
+        $("#overviewTitle").textContent = user.name + " 的账号概览";
+        $("#statStatus").textContent = user.statusLabel;
+        $("#statStatusNote").textContent = user.canLogin ? "可以正常登录" : "当前不可登录";
+        $("#statRole").textContent = user.roleLabel;
+        $("#statRoleNote").textContent = (Store.roleOf(user.role) || {}).description || "—";
+        $("#statLogins").textContent = user.security.loginCount + " 次";
+        $("#statLoginsNote").textContent = "最近登录 " + relativeTime(user.security.lastLoginAt);
+
+        const expiresAt = Store.sessionExpiresAt();
+        $("#statSession").textContent = expiresAt ? formatTime(expiresAt) : "—";
+        $("#statSessionNote").textContent = expiresAt ? "剩余 " + relativeTime(expiresAt).replace("前", "") : "—";
+
+        $("#overviewAlgo").textContent = user.credentialAlgo === "pbkdf2-sha256" ? "PBKDF2-SHA256" : "弱摘要（降级）";
+        $("#ovLogin").textContent = user.login;
+        $("#ovEmail").textContent = user.email;
+        $("#ovName").textContent = user.name;
+        $("#ovUnit").textContent = user.unit;
+        $("#ovDirection").textContent = user.direction || "—";
+        $("#ovId").textContent = user.id;
+        $("#ovCreated").textContent = formatTime(user.createdAt);
+        $("#ovUpdated").textContent = formatTime(user.updatedAt);
+
+        const entries = Store.auditLog(8).filter((entry) => !entry.accountId || entry.accountId === user.id);
+        $("#overviewLog").innerHTML = entries.length
+          ? entries.map((entry) =>
+              '<li><time datetime="' + esc(entry.at) + '">' + esc(formatTime(entry.at)) + "</time>" +
+              "<div><b>" + esc(ACTION_LABELS[entry.action] || entry.action) + "</b>" +
+              (entry.detail ? "<span>" + esc(entry.detail) + "</span>" : "") + "</div></li>"
+            ).join("")
+          : '<li><time>—</time><div><b>暂无访问记录</b><span>登录、修改资料等操作会记录在此</span></div></li>';
+      }
+
+      function renderProfile() {
+        const user = state.user;
+        if (!user) return;
+        const writable = Store.can(user, "account.profile.write");
+
+        $("#pLogin").value = user.login;
+        $("#pName").value = user.name;
+        $("#pUnit").value = user.unit;
+        $("#pEmail").value = user.email;
+        $("#pPhone").value = user.phone || "";
+        $("#pNote").value = user.note || "";
+
+        const select = $("#pDirection");
+        if (!select.options.length) {
+          select.innerHTML = Store.DIRECTIONS.map((item) => '<option value="' + esc(item) + '">' + esc(item) + "</option>").join("");
+        }
+        select.value = user.direction || Store.DIRECTIONS[Store.DIRECTIONS.length - 1];
+
+        ["#pName", "#pUnit", "#pEmail", "#pPhone", "#pDirection", "#pNote"].forEach((selector) => {
+          $(selector).disabled = !writable;
+        });
+        $("#profileSubmit").disabled = !writable;
+        $("#profileReset").disabled = !writable;
+        $("#profileMeta").textContent = writable
+          ? "资料更新于 " + formatTime(user.updatedAt)
+          : "当前账号仅可查看资料，修改需由管理员开通。";
+      }
+
+      function renderSecurity() {
+        const user = state.user;
+        if (!user) return;
+        const expiresAt = Store.sessionExpiresAt();
+
+        $("#securityAlgo").textContent = user.credentialAlgo;
+        $("#secLimit").textContent = Store.MAX_FAILED_ATTEMPTS + " 次";
+        $("#secLock").textContent = "锁定 " + (Store.LOCK_DURATION / 60000) + " 分钟";
+        $("#secFailed").textContent = user.security.failedAttempts + " 次";
+        $("#secLastLogin").textContent = formatTime(user.security.lastLoginAt);
+        $("#secSession").textContent = formatTime(expiresAt);
+        $("#secStorage").textContent = Store.STORAGE_LABEL;
+        $("#secStorageMode").textContent = Store.MODE === "remote"
+          ? "账号由服务端统一托管，可在任意设备登录。"
+          : "账号仅保存在当前浏览器，更换设备或清理缓存后需重新注册。";
+      }
+
+      function renderPermission() {
+        const user = state.user;
+        if (!user) return;
+        const role = Store.roleOf(user.role) || {};
+        $("#permTitle").textContent = role.label + "能力范围";
+        $("#permDesc").textContent = role.description || "—";
+        $("#permRole").textContent = role.label;
+
+        const capabilities = Store.CAPABILITIES;
+        const keys = Object.keys(capabilities);
+        const allowed = user.capabilities;
+
+        $("#permList").innerHTML = keys.map((key) => {
+          const granted = allowed.indexOf(key) !== -1;
+          return (
+            '<div class="perm-row' + (granted ? "" : " is-denied") + '">' +
+            "<div><strong>" + esc(capabilities[key].label) + "</strong><code>" + esc(key) + "</code></div>" +
+            '<span class="badge ' + (granted ? "green" : "muted") + '">' + (granted ? "已开通" : "未开通") + "</span>" +
+            "</div>"
+          );
+        }).join("");
+
+        const roles = Object.keys(Store.ROLES).map((id) => Store.ROLES[id]).sort((a, b) => b.rank - a.rank);
+        $("#roleMatrix").innerHTML = roles.map((item) => {
+          const list = keys.filter((key) => capabilities[key].roles.indexOf(item.id) !== -1);
+          return (
+            '<div class="perm-row' + (item.id === user.role ? "" : " is-denied") + '">' +
+            "<div><strong>" + esc(item.label) + "</strong><code>" + esc(item.description) + "</code>" +
+            '<span style="display:block;margin-top:6px;color:#8b9bb0;font-size:11px">' + esc(list.length ? list.join(" · ") : "无账号中心能力") + "</span></div>" +
+            '<span class="badge ' + (item.id === user.role ? "green" : "plain") + '">' + (item.id === user.role ? "当前角色" : "参考") + "</span>" +
+            "</div>"
+          );
+        }).join("");
+      }
+
+      function renderAdmin() {
+        const user = state.user;
+        if (!user || !Store.can(user, "account.directory")) return;
+        const rows = state.accounts;
+
+        $("#adminStorageNote").innerHTML = Store.MODE === "remote"
+          ? "账号数据保存在服务端 SQLite 数据库（<code>server/data/liminal.db</code>），通过 <code>/api/admin/*</code> 接口读写。"
+          : '账号数据保存在本机 <code>localStorage</code> 的 <code>liminal.account.db.v1</code>；启动后端服务后会自动切换到数据库。';
+        $("#adminCount").textContent = rows.length;
+        $("#adminTotal").textContent = rows.length;
+        $("#adminPending").textContent = rows.filter((row) => row.status === "pending").length;
+        $("#adminActive").textContent = rows.filter((row) => row.status === "active").length;
+        $("#adminRestricted").textContent = rows.filter((row) => row.status === "suspended" || row.status === "disabled").length;
+
+        $("#adminBody").innerHTML = rows.length
+          ? rows.map((row) => {
+              const isSelf = row.id === user.id;
+              const nextStatus = row.status === "active"
+                ? { id: "suspended", label: "暂停" }
+                : { id: "active", label: row.status === "pending" ? "通过审核" : "恢复" };
+
+              const statusOptions = Object.keys(Store.STATUS).map((id) =>
+                '<option value="' + esc(id) + '"' + (id === row.status ? " selected" : "") + ">" + esc(Store.STATUS[id].label) + "</option>"
+              ).join("");
+
+              const roleOptions = Object.keys(Store.ROLES).map((id) =>
+                '<option value="' + esc(id) + '"' + (id === row.role ? " selected" : "") + ">" + esc(Store.ROLES[id].label) + "</option>"
+              ).join("");
+
+              return (
+                '<tr data-account="' + esc(row.id) + '">' +
+                '<td class="who"><strong>' + esc(row.name) + (isSelf ? "（本人）" : "") + "</strong>" +
+                "<span>" + esc(row.login) + " · " + esc(row.email) + "</span></td>" +
+                '<td><select data-action="role"' + (isSelf ? " disabled" : "") + ' aria-label="调整角色">' + roleOptions + "</select></td>" +
+                '<td><select data-action="status"' + (isSelf ? " disabled" : "") + ' aria-label="调整状态">' + statusOptions + "</select></td>" +
+                "<td>" + esc(relativeTime(row.security.lastLoginAt)) + "</td>" +
+                "<td>" + esc(formatTime(row.createdAt, false)) + "</td>" +
+                '<td><div class="actions">' +
+                '<button type="button" data-action="approve"' + (isSelf || row.status === "active" ? " disabled" : "") + ">" + esc(nextStatus.label) + "</button>" +
+                '<button type="button" data-action="reset"' + (isSelf ? " disabled" : "") + ">重置密码</button>" +
+                "</div></td>" +
+                "</tr>"
+              );
+            }).join("")
+          : '<tr><td colspan="6"><div class="empty">尚未加载到账号记录</div></td></tr>';
+      }
+
+      /* ---------------------------------------------------------- 面板切换 */
+
+      function showPanel(name) {
+        state.activePanel = name;
+        document.querySelectorAll(".panel").forEach((panel) => {
+          panel.hidden = panel.id !== "panel-" + name;
+        });
+        document.querySelectorAll("#accountNav .scope-item").forEach((item) => {
+          item.classList.toggle("active", item.dataset.panel === name);
+        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      /* ---------------------------------------------------------- 数据 */
+
+      async function reloadAccounts() {
+        if (!state.user || !Store.can(state.user, "account.directory")) return;
+        const result = await Store.listAccounts();
+        if (result.ok) {
+          state.accounts = result.data;
+          renderAdmin();
+        } else {
+          notice($("#adminNotice"), result.message, "error");
+        }
+      }
+
+      async function refreshUser() {
+        state.user = Store.currentUser();
+        renderIdentity();
+        if (!state.user) return;
+        renderOverview();
+        renderProfile();
+        renderSecurity();
+        renderPermission();
+        await reloadAccounts();
+      }
+
+      /* ---------------------------------------------------------- 事件 */
+
+      document.querySelectorAll("#accountNav .scope-item").forEach((item) => {
+        item.addEventListener("click", () => {
+          if (item.disabled) return;
+          showPanel(item.dataset.panel);
+        });
+      });
+
+      $("#signOutButton").addEventListener("click", () => {
+        Store.logout();
+        window.location.href = "login.html";
+      });
+
+      $("#profileForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        hideNotice($("#profileNotice"));
+        const result = await Store.updateProfile({
+          name: $("#pName").value,
+          unit: $("#pUnit").value,
+          email: $("#pEmail").value,
+          phone: $("#pPhone").value,
+          direction: $("#pDirection").value,
+          note: $("#pNote").value
+        });
+        if (!result.ok) {
+          notice($("#profileNotice"), result.message, "error");
+          return;
+        }
+        state.user = Store.currentUser();
+        renderIdentity();
+        renderOverview();
+        renderProfile();
+        notice($("#profileNotice"), result.message);
+        await reloadAccounts();
+      });
+
+      $("#profileReset").addEventListener("click", () => {
+        hideNotice($("#profileNotice"));
+        renderProfile();
+      });
+
+      $("#passwordForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        hideNotice($("#passwordNotice"));
+        const result = await Store.changePassword({
+          current: $("#pCurrent").value,
+          next: $("#pNext").value,
+          confirm: $("#pConfirm").value
+        });
+        if (!result.ok) {
+          notice($("#passwordNotice"), result.message, "error");
+          return;
+        }
+        $("#passwordForm").reset();
+        notice($("#passwordNotice"), result.message);
+        await refreshUser();
+      });
+
+      $("#adminRefresh").addEventListener("click", async () => {
+        hideNotice($("#adminNotice"));
+        await reloadAccounts();
+        notice($("#adminNotice"), "账号列表已刷新。", "info");
+      });
+
+      $("#adminBody").addEventListener("change", async (event) => {
+        const select = event.target.closest("select[data-action]");
+        if (!select) return;
+        const row = select.closest("tr");
+        const accountId = row.dataset.account;
+        hideNotice($("#adminNotice"));
+
+        const result = select.dataset.action === "role"
+          ? await Store.setRole(accountId, select.value)
+          : await Store.setStatus(accountId, select.value);
+
+        if (!result.ok) notice($("#adminNotice"), result.message, "error");
+        else notice($("#adminNotice"), result.message);
+        await reloadAccounts();
+      });
+
+      $("#adminBody").addEventListener("click", async (event) => {
+        const button = event.target.closest("button[data-action]");
+        if (!button) return;
+        const accountId = button.closest("tr").dataset.account;
+        const target = state.accounts.find((row) => row.id === accountId);
+        if (!target) return;
+        hideNotice($("#adminNotice"));
+
+        if (button.dataset.action === "approve") {
+          const nextStatus = target.status === "active" ? "suspended" : "active";
+          const result = await Store.setStatus(accountId, nextStatus);
+          if (!result.ok) notice($("#adminNotice"), result.message, "error");
+          else notice($("#adminNotice"), result.message);
+          await reloadAccounts();
+          return;
+        }
+
+        state.resetTargetId = accountId;
+        $("#resetDesc").textContent = "为「" + target.name + "」设置临时访问密码，请通过安全渠道告知本人。";
+        $("#rPassword").value = "Liminal@" + Math.floor(1000 + Math.random() * 9000);
+        $("#resetDialog").showModal();
+      });
+
+      $("#resetForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const result = await Store.resetPassword(state.resetTargetId, $("#rPassword").value);
+        $("#resetDialog").close();
+        if (!result.ok) notice($("#adminNotice"), result.message, "error");
+        else notice($("#adminNotice"), result.message + " 临时密码：" + $("#rPassword").value);
+        await reloadAccounts();
+      });
+
+      document.addEventListener("click", (event) => {
+        const closer = event.target.closest("[data-close]");
+        if (closer) closer.closest("dialog").close();
+      });
+
+      document.querySelectorAll("dialog").forEach((dialog) => {
+        dialog.addEventListener("click", (event) => {
+          if (event.target === dialog) dialog.close();
+        });
+      });
+
+      const menu = $("#mobileMenu");
+      menu.addEventListener("click", () => {
+        const open = $("#topnav").classList.toggle("open");
+        menu.setAttribute("aria-expanded", String(open));
+      });
+
+      /* ---------------------------------------------------------- 启动 */
+
+      (async function bootstrap() {
+        await Store.ready();
+        await refreshUser();
+        if (!state.user) return;
+        showPanel("overview");
+      })();
+    })();
+  </script>
+</body>
+</html>

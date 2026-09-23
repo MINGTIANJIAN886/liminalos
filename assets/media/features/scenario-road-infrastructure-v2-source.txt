@@ -1,0 +1,5 @@
+﻿Asset: scenario-road-infrastructure-v2.png
+Method: OpenAI built-in image generation
+Use case: homepage application scenario 03 — intelligent transportation infrastructure maintenance
+Prompt summary: realistic daylight urban expressway interchange, concrete bridge, tunnel entrance, roadside sensing equipment, subtle autonomous road-inspection vehicle and distant inspection drone; natural slate-blue/gray/green editorial photography; no people, text, logos, HUD or neon effects.
+Generated: 2026-09-21

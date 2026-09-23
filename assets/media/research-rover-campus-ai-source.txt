@@ -1,0 +1,3 @@
+AI-assisted illustrative scene, not documentary photography.
+Created using built-in image_gen from user-provided robot reference photograph on 2026-09-07.
+Prompt summary: Photorealistic 3:1 panoramic campus path and grass, compact black research rover matching the supplied reference at the right, generous negative space on the left, overcast natural light, no people, no sci-fi styling.

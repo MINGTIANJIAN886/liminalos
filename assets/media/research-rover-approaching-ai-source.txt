@@ -1,0 +1,2 @@
+Generated with built-in image_gen using the user supplied rover photograph as reference. AI-assisted scene, not a documentary photograph.
+Prompt: 3:1 natural campus road panorama, reference black research rover much farther away in middle distance, front facing viewer as if approaching, 7-9% of image width, right of center; mature trees, grass, modest campus architecture, soft natural light, generous foreground and title space, no people, no sci-fi, no text overlay.

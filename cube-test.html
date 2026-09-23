@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Liminal 灵眸｜线性核心标识测试</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --background: #f6f9fd;
+      --ink: #204a70;
+      --blue: 91, 157, 220;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      background: var(--background);
+      font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .test-mark {
+      width: min(400px, calc(100vw - 28px));
+      display: grid;
+      justify-items: center;
+      margin: 0;
+    }
+
+    .geometry {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    .front {
+      stroke: rgba(var(--blue), .82);
+      stroke-width: 1.15;
+    }
+    .back {
+      stroke: rgba(var(--blue), .32);
+      stroke-width: 1.05;
+    }
+    .joins {
+      stroke: rgba(var(--blue), .52);
+      stroke-width: 1.05;
+    }
+
+    .core-rotator, .echo-rotator,
+    .core-breath, .echo-breath {
+      transform-box: view-box;
+      transform-origin: 50% 50%;
+    }
+    .core-rotator { animation: spin 16s linear infinite; }
+    .echo-rotator { animation: spin 24s linear infinite; animation-delay: -5s; }
+    .core-breath { animation: corePulse 4s ease-in-out infinite; }
+    .echo-breath { animation: echoPulse 4s ease-in-out infinite; }
+
+    figcaption {
+      position: relative;
+      margin-top: 3px;
+      text-align: center;
+    }
+    figcaption strong {
+      display: block;
+      color: var(--ink);
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: .025em;
+      line-height: 1.4;
+    }
+    figcaption span {
+      display: block;
+      margin-top: 7px;
+      color: #7798b5;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .22em;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes corePulse {
+      0%, 100% { transform: scale(.99); opacity: .88; filter: drop-shadow(0 0 2px rgba(145, 118, 215, .09)); }
+      50% { transform: scale(1.01); opacity: 1; filter: drop-shadow(0 0 4px rgba(145, 118, 215, .18)); }
+    }
+    @keyframes echoPulse {
+      0%, 100% { transform: scale(1.11); opacity: .13; }
+      50% { transform: scale(1.13); opacity: .2; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .core-rotator, .echo-rotator, .core-breath, .echo-breath { animation: none; }
+      .core-rotator { transform: rotate(-16deg); }
+      .echo-rotator { transform: rotate(12deg); }
+      .echo-breath { transform: scale(1.12); opacity: .16; }
+    }
+  </style>
+</head>
+<body>
+  <figure class="test-mark" aria-label="Liminal 灵眸动态线框标识测试">
+    <svg class="geometry" viewBox="0 0 400 400" role="img" aria-label="两个前后错位的方形轮廓与四条连接边组成的抽象线框标识">
+      <defs>
+        <g id="wire-mark" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path class="back" d="M110 60 H340 V290 H110 Z" />
+          <path class="joins" d="M60 110 L110 60 M290 110 L340 60 M290 340 L340 290 M60 340 L110 290" />
+          <path class="front" d="M60 110 H290 V340 H60 Z" />
+        </g>
+      </defs>
+      <g class="echo-rotator" aria-hidden="true"><g class="echo-breath"><use href="#wire-mark" /></g></g>
+      <g class="core-rotator"><g class="core-breath"><use href="#wire-mark" /></g></g>
+    </svg>
+    <figcaption><strong>Liminal 灵眸</strong><span>ORCHESTRATION</span></figcaption>
+  </figure>
+</body>
+</html>

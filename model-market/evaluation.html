@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Liminal 灵眸评测中心：自主载体模型榜单、能力对比与竞技场演示。">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <title>评测中心｜Liminal 灵眸</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root{--ink:#142033;--text:#2b3547;--muted:#66758d;--line:#dce4ef;--blue:#1f5eff;--deep:#123a8f;--cyan:#14b8d4;--max:1480px;--shadow:0 16px 42px rgba(31,49,82,.08);--green:#087d65;--amber:#d97706;--rose:#e0455b}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;color:var(--text);background:#f8fbff;font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",Arial,sans-serif;-webkit-font-smoothing:antialiased}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}h1,h2,h3,p{margin-top:0}h1,h2,h3{color:var(--ink)}.wrap{width:min(var(--max),calc(100% - clamp(30px,6vw,96px)));margin-inline:auto}.eyebrow{color:var(--blue);font-size:12px;font-weight:850;letter-spacing:.14em;text-transform:uppercase}.section{padding:80px 0}.btn{display:inline-flex;justify-content:center;align-items:center;min-height:44px;padding:0 20px;border-radius:12px;border:1px solid transparent;font-size:14px;font-weight:800;transition:transform .2s,box-shadow .2s,background .2s}.btn:hover{transform:translateY(-2px)}.btn-primary{background:linear-gradient(115deg,var(--blue),#2377e7 65%,#199dc0);color:#fff;box-shadow:0 12px 27px rgba(31,94,255,.2)}.btn-outline{background:#fff;color:var(--deep);border-color:#d5e2f4}.btn-outline:hover{background:#f5f9ff}
+
+    .topbar{position:sticky;top:0;z-index:30;height:72px;background:rgba(255,255,255,.93);border-bottom:1px solid rgba(220,228,239,.88);backdrop-filter:blur(18px)}.nav{height:100%;display:flex;align-items:center;gap:38px}.brand{color:var(--ink);font-size:23px;letter-spacing:-.035em;font-weight:850;white-space:nowrap}.brand span{color:var(--blue)}.brand i{font-style:normal;color:var(--cyan)}.nav-links{display:flex;align-items:center;gap:28px;margin-left:auto}.nav-links a{font-size:14px;font-weight:760;white-space:nowrap;transition:color .2s}.nav-links a:hover,.nav-links a.active{color:var(--blue)}.cta-link{margin-left:10px;padding:10px 16px;border:1px solid #d7e2f2;border-radius:999px;color:var(--deep);font-size:12px;font-weight:800;white-space:nowrap}.cta-link:hover{background:#eef4ff}.menu-toggle{display:none;background:none;border:0;color:var(--ink);font-size:22px}
+
+    .page-hero{position:relative;overflow:hidden;padding:72px 0 56px;background:radial-gradient(ellipse at 77% 29%,rgba(31,94,255,.09),transparent 37%),radial-gradient(ellipse at 12% 84%,rgba(20,184,212,.07),transparent 38%),linear-gradient(180deg,#fbfdff,#f4f8fe);text-align:center}.page-hero:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(56,93,145,.09) .7px,transparent .7px);background-size:26px 26px;mask-image:linear-gradient(90deg,transparent 15%,#000 68%,transparent)}.page-hero h1{position:relative;font-size:clamp(36px,4.5vw,56px);letter-spacing:-.045em;line-height:1.14;margin:14px 0 14px}.page-hero p{position:relative;max-width:560px;margin:0 auto;color:var(--muted);font-size:16px;line-height:1.8}
+
+    /* Block header (01-04) */
+    .block-head{display:flex;align-items:baseline;gap:18px;margin-bottom:32px}.block-num{font-size:14px;font-weight:850;color:var(--blue);letter-spacing:.1em;background:#eaf1ff;padding:4px 12px;border-radius:8px}.block-head h2{font-size:clamp(26px,3vw,36px);letter-spacing:-.03em;line-height:1.2;margin:0}.block-head p{margin:0 0 0 auto;color:var(--muted);font-size:14px;line-height:1.7;max-width:420px}
+
+    /* 01 Overview */
+    #overview{background:#fff;border-bottom:1px solid var(--line)}
+    .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:36px}
+    .stat-card{padding:32px 28px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,#f8fbff,#eef5ff);text-align:center}.stat-card strong{display:block;font-size:42px;font-weight:850;color:var(--deep);letter-spacing:-.03em;line-height:1}.stat-card span{display:block;margin-top:10px;color:var(--muted);font-size:14px;font-weight:600}
+    .dim-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+    .dim-card{padding:22px 18px;border:1px solid var(--line);border-radius:14px;background:#fff;text-align:center;transition:box-shadow .2s}.dim-card:hover{box-shadow:0 8px 24px rgba(31,49,82,.06)}.dim-card .dim-icon{font-size:22px;margin-bottom:8px}.dim-card h3{font-size:15px;margin:0 0 6px}.dim-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.6}
+
+    /* 02 Leaderboard */
+    #leaderboard{background:#f8fbff}
+    .lb-shell{overflow:hidden;border:1px solid var(--line);border-radius:20px;box-shadow:0 12px 34px rgba(31,49,82,.055);background:#fff}
+    .lb-toolbar{display:flex;gap:10px;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+    .lb-search{position:relative;flex:1;min-width:180px}.lb-search input{width:100%;height:38px;border:1px solid #dce5f0;border-radius:10px;padding:0 14px 0 36px;background:#f9fbfe;color:var(--ink);font-size:13px;outline:none}.lb-search input:focus{border-color:#90b2fa;box-shadow:0 0 0 3px rgba(31,94,255,.06)}.lb-search:before{content:"⌕";position:absolute;left:12px;top:5px;color:#8396ad;font-size:18px}
+    .lb-filter{height:38px;padding:0 28px 0 12px;border:1px solid #dce5f0;border-radius:10px;color:var(--text);background:#fff;font-size:12px}
+    .lb-count{margin-left:auto;color:var(--muted);font-size:12px;white-space:nowrap}.lb-count strong{color:var(--deep);font-size:15px}
+    .rank-table-wrap{overflow:auto}.rank-table{width:100%;min-width:960px;border-collapse:collapse}
+    .rank-table th{padding:12px 14px;color:#7a8aa0;background:#fbfcff;text-align:left;font-size:11px;font-weight:760;white-space:nowrap}.rank-table th.center{text-align:center}
+    .rank-table td{padding:13px 14px;border-top:1px solid #ebf0f6;color:var(--text);font-size:12px}.rank-table td.center{text-align:center}
+    .rank-table tr:nth-child(-n+3) .rank-no{color:var(--blue);font-weight:850}.rank-no{font-size:15px;color:#8796aa}
+    .rank-name strong{display:block;color:var(--ink);font-size:13px}.rank-name span{display:block;margin-top:2px;color:var(--muted);font-size:10px}.rank-tags{display:flex;gap:5px;margin-top:5px}
+    .src-tag{display:inline-block;padding:2px 7px;border-radius:5px;font-size:10px;font-weight:700}.src-tag.open{background:#e6f7f0;color:var(--green)}.src-tag.closed{background:#fef3e7;color:var(--amber)}
+    .carrier-tag{display:inline-block;padding:2px 7px;border-radius:5px;background:#eef4ff;color:var(--deep);font-size:10px;font-weight:700}
+    .avg-score{color:var(--deep);font-size:14px;font-weight:850;text-align:center}
+    .dim-score{color:var(--text);font-size:13px;font-weight:600;text-align:center}.dim-score.dim-high{color:var(--green);font-weight:700}.dim-score.dim-low{color:#9ca7b6}
+    .rank-elo{font-weight:850;color:var(--deep)!important;font-size:13px;white-space:nowrap;text-align:center}.rank-ci{font-weight:400;color:var(--muted);font-size:10px;margin-left:3px}
+    .top5-shade{background:#f0f5ff}
+    th.sortable{cursor:pointer;user-select:none;transition:color .2s}th.sortable:hover{color:var(--blue)}th.sortable.active{color:var(--blue)}th.sortable:after{content:" ⇅";font-size:10px;color:#a5b3c8;font-weight:400}th.sortable.active[data-dir="desc"]:after{content:" ↓";color:var(--blue);font-weight:700}th.sortable.active[data-dir="asc"]:after{content:" ↑";color:var(--blue);font-weight:700}
+    .lb-foot{padding:14px 20px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}
+
+    /* 03 Compare */
+    #compare{background:#fff;border-top:1px solid var(--line)}
+    .compare-controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:28px}
+    .compare-select{height:42px;padding:0 32px 0 14px;border:1px solid #dce5f0;border-radius:12px;color:var(--ink);background:#fff;font-size:13px;font-weight:600;min-width:200px}
+    .compare-hint{color:var(--muted);font-size:13px}
+    .compare-chart-wrap{display:grid;grid-template-columns:1fr 280px;gap:28px;align-items:start}
+    .radar-container{position:relative;height:420px;padding:20px;border:1px solid var(--line);border-radius:18px;background:#fbfdff}
+    .compare-legend{display:flex;flex-direction:column;gap:14px}
+    .legend-item{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff}
+    .legend-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+    .legend-item strong{display:block;font-size:13px;color:var(--ink)}.legend-item span{display:block;font-size:11px;color:var(--muted)}
+
+    /* 04 Arena */
+    #arena{background:linear-gradient(180deg,#f8fbff,#eef5fc)}
+    .arena-shell{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#fff;box-shadow:0 12px 34px rgba(31,49,82,.055)}
+    .arena-controls{display:flex;gap:14px;align-items:center;justify-content:center;padding:24px 20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+    .arena-select{height:46px;padding:0 32px 0 16px;border:2px solid #dce5f0;border-radius:14px;color:var(--ink);background:#fff;font-size:14px;font-weight:700;min-width:220px}
+    .arena-vs{font-size:22px;font-weight:900;color:var(--blue);padding:0 8px}
+    .arena-battle{display:grid;grid-template-columns:1fr auto 1fr;gap:0;min-height:320px}
+    .arena-side{padding:32px 28px;display:flex;flex-direction:column;gap:16px}
+    .arena-side.side-a{background:linear-gradient(135deg,#f0f5ff,#e8effc)}.arena-side.side-b{background:linear-gradient(135deg,#fff5f0,#fcefe8)}
+    .arena-side h3{font-size:18px;margin:0}.arena-side .side-tag{font-size:11px;font-weight:800;color:var(--blue);letter-spacing:.1em}.side-b .side-tag{color:var(--rose)}
+    .arena-score-big{font-size:48px;font-weight:900;color:var(--deep);letter-spacing:-.04em;line-height:1}.side-b .arena-score-big{color:var(--rose)}
+    .arena-ci{font-size:13px;color:var(--muted)}.arena-ci strong{color:var(--text)}
+    .arena-bars{display:flex;flex-direction:column;gap:10px;margin-top:auto}
+    .arena-bar{display:flex;align-items:center;gap:10px}.arena-bar label{width:48px;font-size:11px;color:var(--muted);font-weight:600}.arena-bar .bar-track{flex:1;height:8px;border-radius:4px;background:#e8eef5;overflow:hidden}.arena-bar .bar-fill{height:100%;border-radius:4px;transition:width .4s}.arena-bar .bar-val{width:36px;font-size:12px;font-weight:700;text-align:right}
+    .arena-mid{display:flex;align-items:center;justify-content:center;padding:0 20px;background:#fff;border-left:1px solid var(--line);border-right:1px solid var(--line)}
+    .arena-winner{padding:20px;text-align:center;border-top:1px solid var(--line);background:#f8fbff}
+    .arena-winner strong{font-size:16px;color:var(--deep)}.arena-winner span{display:block;margin-top:4px;color:var(--muted);font-size:12px}
+
+    .footer{padding:32px 0;background:#132c56;color:#bacbe3}.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:12px}.footer a:hover{color:#fff}.footer-links{display:flex;gap:22px}
+
+    @media(max-width:1000px){.stat-row{grid-template-columns:1fr}.dim-row{grid-template-columns:repeat(2,1fr)}.compare-chart-wrap{grid-template-columns:1fr}.arena-battle{grid-template-columns:1fr}.arena-mid{display:none}}
+    @media(max-width:800px){.topbar{height:64px}.nav{gap:12px}.brand{font-size:20px}.menu-toggle{display:block;margin-left:auto}.nav-links{display:none;position:absolute;top:63px;left:0;right:0;padding:16px 5vw 20px;background:#fff;border-bottom:1px solid var(--line);box-shadow:var(--shadow)}.nav-links.open{display:grid;gap:14px}.cta-link{margin-left:0;padding:8px 11px;font-size:10px}.page-hero{padding:48px 0}.page-hero h1{font-size:32px}.block-head{flex-wrap:wrap}.block-head p{margin:0}.dim-row{grid-template-columns:1fr 1fr}}
+    @media(max-width:580px){.section{padding:56px 0}.page-hero h1{font-size:28px}.dim-row{grid-template-columns:1fr}.footer-inner{align-items:start;flex-direction:column}}
+    /* 与模型广场统一品牌导航、密度及蓝白基调 */
+    :root{--ink:#18293e;--text:#34445a;--muted:#718199;--line:#dfe6f0;--blue:#285ec8;--deep:#234c96;--cyan:#2194b3;--rose:#637ea5}
+    body{background:#f5f7fb}
+    .topbar{height:66px;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+    .topbar-inner{display:flex;align-items:center;width:min(1600px,calc(100% - 48px));height:100%;margin:auto;gap:43px}
+    .brand{font-size:22px;font-weight:800;letter-spacing:-.04em}.brand em{color:var(--blue);font-style:normal}
+    .topnav{display:flex;align-items:center;gap:10px;height:100%}.topnav a{display:flex;align-items:center;align-self:stretch;padding:0 15px;border-bottom:2px solid transparent;color:#65748a;font-size:13px;font-weight:700;white-space:nowrap}.topnav a:hover,.topnav .current{color:var(--blue)}.topnav .current{border-bottom-color:var(--blue)}
+    .top-actions{display:flex;align-items:center;gap:16px;margin-left:auto}.home-link{color:#65748a;font-size:12px;font-weight:700;white-space:nowrap}.home-link:hover{color:var(--blue)}.workspace-link{padding:10px 15px;border:1px solid #d3dff0;border-radius:9px;color:#234c96;font-size:12px;font-weight:800;white-space:nowrap}.workspace-link:hover{background:#f4f8ff}
+    .mobile-menu{display:none;margin-left:auto;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);font-size:13px}
+    .page-hero{padding:48px 0 30px;background:#f5f7fb;text-align:left}.page-hero:before{display:none}.page-hero h1{margin:10px 0;font-size:clamp(32px,3vw,44px)}.page-hero p{max-width:780px;margin:0;font-size:14px;line-height:1.75}.eyebrow{font-size:10px;letter-spacing:.13em}
+    .section{padding:43px 0}.block-head{margin-bottom:22px}.block-head h2{font-size:clamp(23px,2.3vw,30px)}.block-num{border-radius:6px;background:#edf3ff}
+    #overview,#compare{background:#f5f7fb}#leaderboard,#arena{background:#f5f7fb}
+    .stat-row{gap:12px;margin-bottom:22px}.stat-card{padding:23px 20px;border-radius:12px;background:#fff;text-align:left}.stat-card strong{font-size:30px}.stat-card span{font-size:12px}
+    .dim-row{gap:10px}.dim-card{padding:17px 14px;border-radius:11px;text-align:left}.dim-card .dim-icon{font-size:14px;font-weight:800;color:var(--blue)}
+    .lb-shell,.arena-shell{border-radius:13px;box-shadow:none}.lb-toolbar{padding:13px 16px}.rank-table td{padding:11px 12px}
+    .radar-container{border-radius:12px;background:#fff}.legend-item{border-radius:9px}.arena-side.side-a{background:#f1f5fc}.arena-side.side-b{background:#f4f7fb}.arena-winner{background:#f6f9fd}
+    .radar-fallback{display:grid;gap:10px;padding:20px;color:var(--text);font-size:13px}.radar-fallback p{margin:0 0 8px;color:var(--muted)}.radar-fallback div{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line)}
+    .btn{border-radius:8px;box-shadow:none}.btn-primary{background:var(--blue)}.btn:hover{transform:none}
+    .footer{background:#eaf0f8;color:#667b96}.footer a:hover{color:var(--blue)}
+    @media(max-width:780px){.topbar-inner{width:calc(100% - 30px);gap:12px}.topnav{display:none;position:absolute;top:65px;left:0;right:0;height:auto;padding:10px 15px;border-bottom:1px solid var(--line);background:#fff}.topnav.open{display:grid}.topnav a{min-height:38px;border-bottom:0;border-radius:6px}.topnav .current{background:#edf3ff}.mobile-menu{display:block}.top-actions{gap:10px;margin-left:0}.home-link,.workspace-link{font-size:10px}.page-hero{padding:40px 0 25px}.section{padding:36px 0}}
+    @media(max-width:600px){.brand{font-size:19px}.workspace-link{padding:7px 9px}.page-hero h1{font-size:30px}.block-head p{max-width:none}}
+  
+    /* Unified Liminal brand mark */
+    .site-logo { display:flex !important; align-items:center; justify-content:center; flex:0 0 auto; width:106px; height:50px; overflow:hidden; border-radius:8px; background:#fff; }
+    .site-logo img { display:block; width:100%; height:100%; object-fit:contain; }
+    @media(max-width:600px){ .site-logo { width:88px; height:42px; border-radius:7px; } }
+</style>
+  <link rel="stylesheet" href="../assets/css/logo-theme.css" />
+</head>
+<body>
+  <header class="topbar"><div class="topbar-inner"><a class="brand site-logo" href="../index.html" aria-label="Liminal 灵眸首页"><span class="site-logo-stack" aria-hidden="true"><img class="site-logo-layer site-logo-layer--light" src="../assets/media/liminal-logo-header-light.png" alt="" /><img class="site-logo-layer site-logo-layer--dark" src="../assets/media/liminal-logo-header-dark.png" alt="" /></span></a><button class="mobile-menu" id="mobileMenu" type="button" aria-expanded="false" aria-controls="topnav">菜单</button><nav class="topnav" id="topnav" aria-label="模型生态导航"><a href="index.html">模型广场</a><a class="current" href="evaluation.html" aria-current="page">评测中心</a><a href="competition.html">开放挑战</a></nav><div class="top-actions"><a class="home-link" href="../index.html">返回官网</a><a class="workspace-link" href="../login.html">进入云台 ↗</a></div></div></header>
+
+  <main>
+    <section class="page-hero">
+      <div class="wrap">
+        <span class="eyebrow">BENCHMARK CENTER</span>
+        <h1>评测中心</h1>
+      </div>
+    </section>
+
+    <!-- 01 测评体系概览 -->
+    <section class="section" id="overview">
+      <div class="wrap">
+        <div class="block-head"><span class="block-num">01</span><h2>测评体系概览</h2></div>
+        <div class="stat-row">
+          <div class="stat-card"><strong>12</strong><span>标准场景</span></div>
+          <div class="stat-card"><strong>128</strong><span>参与模型</span></div>
+          <div class="stat-card"><strong>2486</strong><span>评测次数</span></div>
+        </div>
+        <div class="dim-row">
+          <div class="dim-card"><div class="dim-icon">综合</div><h3>综合评分</h3><p>四维度加权均分</p></div>
+          <div class="dim-card"><div class="dim-icon">导航</div><h3>导航能力</h3><p>路径规划与空间定位</p></div>
+          <div class="dim-card"><div class="dim-icon">感知</div><h3>感知能力</h3><p>环境理解与目标识别</p></div>
+          <div class="dim-card"><div class="dim-icon">决策</div><h3>决策能力</h3><p>任务推理与行为规划</p></div>
+          <div class="dim-card"><div class="dim-icon">协同</div><h3>协同能力</h3><p>多模型协作与通信</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 模型评测榜单 -->
+    <section class="section" id="leaderboard">
+      <div class="wrap">
+        <div class="block-head"><span class="block-num">02</span><h2>模型评测榜单</h2></div>
+        <div class="lb-shell">
+          <div class="lb-toolbar">
+            <label class="lb-search"><input id="lbSearch" type="search" placeholder="搜索模型名称或机构..." aria-label="搜索模型"></label>
+            <select class="lb-filter" id="lbCarrier" aria-label="筛选载体"><option value="">全部载体</option><option value="无人车">无人车</option><option value="无人机">无人机</option><option value="移动机器人">移动机器人</option><option value="机械臂">机械臂</option><option value="多载体">多载体</option></select>
+            <select class="lb-filter" id="lbSrc" aria-label="筛选开源"><option value="">全部模型</option><option value="open">开源</option><option value="closed">闭源</option></select>
+            <span class="lb-count">参与模型 <strong id="lbCount">10</strong></span>
+          </div>
+          <div class="rank-table-wrap">
+            <table class="rank-table">
+              <thead><tr><th>排名</th><th>模型</th><th class="sortable active center" data-sort="avg" data-dir="desc">综合分</th><th class="sortable center" data-sort="nav">导航</th><th class="sortable center" data-sort="perc">感知</th><th class="sortable center" data-sort="dec">决策</th><th class="sortable center" data-sort="coop">协同</th><th class="sortable center" data-sort="elo">ELO</th><th class="sortable center" data-sort="votes">得票</th><th class="sortable center" data-sort="battles">参战</th><th class="sortable" data-sort="date">发布日期</th></tr></thead>
+              <tbody id="rankBody"></tbody>
+            </table>
+          </div>
+          <div class="lb-foot">榜单、能力对比及竞技场数据均为前端演示，不代表真实模型表现。浅蓝色底标记各维度 Top 5；综合分为四项均值。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 模型能力对比 -->
+    <section class="section" id="compare">
+      <div class="wrap">
+        <div class="block-head"><span class="block-num">03</span><h2>模型能力对比</h2></div>
+        <div class="compare-controls">
+          <select class="compare-select" id="cmp1" aria-label="模型1"></select>
+          <select class="compare-select" id="cmp2" aria-label="模型2"></select>
+          <select class="compare-select" id="cmp3" aria-label="模型3"></select>
+          <span class="compare-hint">最多选 3 个模型</span>
+        </div>
+        <div class="compare-chart-wrap">
+          <div class="radar-container"><canvas id="radarChart"></canvas></div>
+          <div class="compare-legend" id="cmpLegend"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 模型竞技场 -->
+    <section class="section" id="arena">
+      <div class="wrap">
+        <div class="block-head"><span class="block-num">04</span><h2>模型竞技场</h2></div>
+        <div class="arena-shell">
+          <div class="arena-controls">
+            <select class="arena-select" id="arenaA" aria-label="模型A"></select>
+            <span class="arena-vs">VS</span>
+            <select class="arena-select" id="arenaB" aria-label="模型B"></select>
+            <button type="button" class="btn btn-primary" id="arenaBtn">随机对战</button>
+          </div>
+          <div class="arena-battle" id="arenaBattle">
+            <div class="arena-side side-a" id="arenaSideA"></div>
+            <div class="arena-mid"><span class="arena-vs" style="font-size:28px">VS</span></div>
+            <div class="arena-side side-b" id="arenaSideB"></div>
+          </div>
+          <div class="arena-winner" id="arenaWinner"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="wrap footer-inner"><span>© 2026 Liminal 灵眸 · 自主载体模型生态</span><div class="footer-links"><a href="index.html">模型广场</a><a href="evaluation.html">评测中心</a><a href="competition.html">开放挑战</a></div></div></footer>
+
+  <script>
+    const RANKS=[
+      {name:'RoadVLA-v3',lab:'BJTU Lab',date:'2026/04/24',elo:1048.7,votes:129,battles:303,src:'open',carrier:'无人车',nav:86.4,perc:81.2,dec:83.5,coop:79.8},
+      {name:'NavAgent-X',lab:'NavLab',date:'2026/04/24',elo:1048.0,votes:79,battles:182,src:'open',carrier:'移动机器人',nav:91.2,perc:78.6,dec:85.4,coop:82.1},
+      {name:'SkyPerception-2',lab:'Aerial Intelligence Group',date:'2026/05/21',elo:1047.1,votes:139,battles:318,src:'open',carrier:'无人机',nav:80.3,perc:89.7,dec:84.1,coop:80.5},
+      {name:'CampusPilot-M',lab:'Campus Robotics',date:'2026/06/20',elo:1044.1,votes:128,battles:307,src:'open',carrier:'无人车',nav:88.8,perc:80.3,dec:82.6,coop:78.4},
+      {name:'FusionScene-1',lab:'Joint Perception',date:'2026/06/22',elo:1030.9,votes:88,battles:211,src:'closed',carrier:'多载体',nav:84.2,perc:87.9,dec:81.6,coop:85.3},
+      {name:'CoNav-Collective',lab:'Cooperative Systems',date:'2026/04/07',elo:1029.8,votes:135,battles:366,src:'open',carrier:'多载体',nav:82.5,perc:79.8,dec:80.3,coop:84.8},
+      {name:'ArmSkill-Flow',lab:'Manipulation Team',date:'2026/03/15',elo:1024.5,votes:72,battles:198,src:'open',carrier:'机械臂',nav:76.8,perc:81.4,dec:85.4,coop:74.2},
+      {name:'DroneRoute-R',lab:'Flight Autonomy',date:'2026/02/28',elo:1018.3,votes:64,battles:175,src:'open',carrier:'无人机',nav:88.1,perc:85.6,dec:76.8,coop:72.3},
+      {name:'TerrainSense-Lite',lab:'Field AI Studio',date:'2026/02/10',elo:1012.7,votes:51,battles:142,src:'open',carrier:'移动机器人',nav:79.4,perc:83.5,dec:75.2,coop:70.8},
+      {name:'TaskWeaver-VLA',lab:'Embodied Systems',date:'2026/01/20',elo:1005.4,votes:43,battles:118,src:'open',carrier:'机械臂',nav:78.6,perc:80.2,dec:85.2,coop:76.9}
+    ];
+    const DIMS=['nav','perc','dec','coop'];
+    const DIM_LABELS={avg:'综合',nav:'导航',perc:'感知',dec:'决策',coop:'协同'};
+    const CHART_COLORS=['rgba(31,94,255,.7)','rgba(232,69,91,.7)','rgba(8,125,101,.7)'];
+    const CHART_BORDERS=['#1f5eff','#e0455b','#087d65'];
+    const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+    const menu=$('#mobileMenu');
+    menu.addEventListener('click',()=>{const open=$('#topnav').classList.toggle('open');menu.setAttribute('aria-expanded',String(open))});
+    $$('#topnav a').forEach(a=>a.addEventListener('click',()=>{$('#topnav').classList.remove('open');menu.setAttribute('aria-expanded','false')}));
+    function escapeHTML(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+    RANKS.forEach(r=>r.avg=Math.round((r.nav+r.perc+r.dec+r.coop)/4*10)/10);
+
+    /* ===== 02 Leaderboard ===== */
+    const lbState={sortKey:'avg',sortDir:'desc',search:'',carrier:'',src:''};
+    function computeCI(b){const base=200/Math.sqrt(b);return{upper:Math.round(base*1.05*10)/10,lower:Math.round(base*0.95*10)/10}}
+    function dimClass(v){return v>=85?'dim-score dim-high':v<78?'dim-score dim-low':'dim-score'}
+    function getTop5(key){return[...RANKS].sort((a,b)=>b[key]-a[key]).slice(0,5).map(r=>r.name)}
+    const TOP5={};['avg',...DIMS].forEach(k=>TOP5[k]=getTop5(k));
+
+    function renderTable(){
+      let rows=[...RANKS];
+      if(lbState.search){const q=lbState.search.toLowerCase();rows=rows.filter(r=>r.name.toLowerCase().includes(q)||r.lab.toLowerCase().includes(q))}
+      if(lbState.carrier)rows=rows.filter(r=>r.carrier===lbState.carrier);
+      if(lbState.src)rows=rows.filter(r=>r.src===lbState.src);
+      const key=lbState.sortKey,dir=lbState.sortDir==='desc'?-1:1;
+      rows.sort((a,b)=>{
+        let va=a[key],vb=b[key];
+        if(key==='date'){va=new Date(va.replace(/\//g,'-'));vb=new Date(vb.replace(/\//g,'-'));return(va-vb)*dir}
+        return(va-vb)*dir;
+      });
+      $('#lbCount').textContent=rows.length;
+      $('#rankBody').innerHTML=rows.length?rows.map((r,i)=>{
+        const ci=computeCI(r.battles);
+        const shade=k=>TOP5[k].includes(r.name)?'top5-shade':'';
+        return`<tr><td><span class="rank-no">${String(i+1).padStart(2,'0')}</span></td><td class="rank-name"><strong>${escapeHTML(r.name)}</strong><span>${escapeHTML(r.lab)}</span><div class="rank-tags"><span class="src-tag ${r.src==='open'?'open':'closed'}">${r.src==='open'?'开源':'闭源'}</span><span class="carrier-tag">${escapeHTML(r.carrier)}</span></div></td><td class="avg-score ${shade('avg')}">${r.avg.toFixed(1)}</td><td class="${dimClass(r.nav)} ${shade('nav')}">${r.nav.toFixed(1)}</td><td class="${dimClass(r.perc)} ${shade('perc')}">${r.perc.toFixed(1)}</td><td class="${dimClass(r.dec)} ${shade('dec')}">${r.dec.toFixed(1)}</td><td class="${dimClass(r.coop)} ${shade('coop')}">${r.coop.toFixed(1)}</td><td class="rank-elo">${r.elo.toFixed(1)}<span class="rank-ci">±${ci.upper}</span></td><td class="center">${r.votes}</td><td class="center">${r.battles}</td><td>${escapeHTML(r.date)}</td></tr>`;
+      }).join(''):'<tr><td colspan="11" style="padding:40px;text-align:center;color:var(--muted)">没有符合筛选条件的模型</td></tr>';
+      $$('.rank-table th.sortable').forEach(th=>{
+        if(th.dataset.sort===lbState.sortKey){th.classList.add('active');th.setAttribute('data-dir',lbState.sortDir)}
+        else{th.classList.remove('active');th.removeAttribute('data-dir')}
+      });
+    }
+    document.addEventListener('click',e=>{
+      const th=e.target.closest('th.sortable');
+      if(th){const k=th.dataset.sort;if(lbState.sortKey===k)lbState.sortDir=lbState.sortDir==='desc'?'asc':'desc';else{lbState.sortKey=k;lbState.sortDir='desc'}renderTable()}
+    });
+    $('#lbSearch').addEventListener('input',e=>{lbState.search=e.target.value.trim();renderTable()});
+    $('#lbCarrier').addEventListener('change',e=>{lbState.carrier=e.target.value;renderTable()});
+    $('#lbSrc').addEventListener('change',e=>{lbState.src=e.target.value;renderTable()});
+
+    /* ===== 03 Compare (Radar) ===== */
+    let radarChart=null;
+    function initCompareSelects(){
+      const opts=RANKS.map(r=>`<option value="${escapeHTML(r.name)}">${escapeHTML(r.name)}</option>`).join('');
+      ['#cmp1','#cmp2','#cmp3'].forEach((sel,i)=>{
+        $(sel).innerHTML='<option value="">选择模型</option>'+opts;
+        $(sel).value=[RANKS[0].name,RANKS[2].name,''][i];
+      });
+    }
+    function renderRadar(){
+      const models=['#cmp1','#cmp2','#cmp3'].map(s=>$(s).value).filter(Boolean);
+      const datasets=models.map((name,i)=>{
+        const r=RANKS.find(x=>x.name===name);
+        return{
+          label:name,
+          data:[r.nav,r.perc,r.dec,r.coop,r.avg],
+          backgroundColor:CHART_COLORS[i],
+          borderColor:CHART_BORDERS[i],
+          borderWidth:2,
+          pointBackgroundColor:CHART_BORDERS[i],
+          pointRadius:4
+        };
+      });
+      if(typeof Chart==='undefined'){
+        $('#radarChart').hidden=true;
+        let fallback=$('#radarFallback');
+        if(!fallback){fallback=document.createElement('div');fallback.id='radarFallback';fallback.className='radar-fallback';$('.radar-container').append(fallback)}
+        fallback.innerHTML='<p>能力图表暂不可用，以下为当前模型的能力摘要。</p>'+models.map(name=>{const r=RANKS.find(x=>x.name===name);return`<div><strong>${escapeHTML(name)}</strong><span>导航 ${r.nav.toFixed(1)} · 感知 ${r.perc.toFixed(1)} · 决策 ${r.dec.toFixed(1)} · 协同 ${r.coop.toFixed(1)}</span></div>`}).join('');
+        $('#cmpLegend').innerHTML='';
+        return;
+      }
+      const ctx=$('#radarChart').getContext('2d');
+      if(radarChart)radarChart.destroy();
+      radarChart=new Chart(ctx,{type:'radar',data:{labels:['导航','感知','决策','协同','综合'],datasets},options:{responsive:true,maintainAspectRatio:false,scales:{r:{beginAtZero:true,max:100,ticks:{stepSize:20,font:{size:10}},pointLabels:{font:{size:13,weight:'600'}}}},plugins:{legend:{display:false}}}});
+      $('#cmpLegend').innerHTML=models.map((name,i)=>{
+        const r=RANKS.find(x=>x.name===name);
+        return`<div class="legend-item"><span class="legend-dot" style="background:${CHART_BORDERS[i]}"></span><div><strong>${escapeHTML(name)}</strong><span>${escapeHTML(r.lab)} · 综合 ${r.avg.toFixed(1)}</span></div></div>`;
+      }).join('');
+    }
+    ['#cmp1','#cmp2','#cmp3'].forEach(s=>$(s).addEventListener('change',renderRadar));
+
+    /* ===== 04 Arena (A vs B) ===== */
+    function initArenaSelects(){
+      const opts=RANKS.map(r=>`<option value="${escapeHTML(r.name)}">${escapeHTML(r.name)}</option>`).join('');
+      $('#arenaA').innerHTML=opts;$('#arenaB').innerHTML=opts;
+      $('#arenaA').value=RANKS[0].name;$('#arenaB').value=RANKS[1].name;
+    }
+    function renderArena(){
+      const a=RANKS.find(r=>r.name===$('#arenaA').value);
+      const b=RANKS.find(r=>r.name===$('#arenaB').value);
+      if(!a||!b)return;
+      const ciA=computeCI(a.battles),ciB=computeCI(b.battles);
+      const aWin=Math.round(a.votes/(a.votes+b.votes)*1000)/10;
+      const bWin=Math.round(100-aWin);
+      const dims=[['nav','导航'],['perc','感知'],['dec','决策'],['coop','协同']];
+      const sideHTML=(r,ci,win,cls,tag)=>{
+        const bars=dims.map(([k,l])=>{const v=r[k];const w=(v/100*100).toFixed(0);const c=v>=85?'var(--green)':v>=78?'var(--blue)':'#9ca7b6';return`<div class="arena-bar"><label>${l}</label><div class="bar-track"><div class="bar-fill" style="width:${w}%;background:${c}"></div></div><span class="bar-val">${v.toFixed(1)}</span></div>`}).join('');
+        return`<span class="side-tag">${tag}</span><h3>${escapeHTML(r.name)}</h3><div class="arena-score-big">${win.toFixed(1)}%</div><div class="arena-ci">综合 ${r.avg.toFixed(1)} · ELO ${r.elo.toFixed(1)} <strong>±${ci.upper}</strong></div><div class="arena-bars">${bars}</div>`;
+      };
+      $('#arenaSideA').innerHTML=sideHTML(a,ciA,aWin,'side-a','MODEL A');
+      $('#arenaSideB').innerHTML=sideHTML(b,ciB,bWin,'side-b','MODEL B');
+      const winner=a.avg>b.avg?`${a.name} 胜`:`${b.name} 胜`;
+      const diff=Math.abs(a.avg-b.avg).toFixed(1);
+      $('#arenaWinner').innerHTML=`<strong>${escapeHTML(winner)}</strong><span>综合分差距 ${diff} · 基于导航/感知/决策/协同四项均值</span>`;
+    }
+    $('#arenaBtn').addEventListener('click',()=>{
+      const avail=RANKS.map(r=>r.name);
+      let a=avail[Math.floor(Math.random()*avail.length)],b;
+      do{b=avail[Math.floor(Math.random()*avail.length)]}while(b===a);
+      $('#arenaA').value=a;$('#arenaB').value=b;renderArena();
+    });
+    $('#arenaA').addEventListener('change',renderArena);
+    $('#arenaB').addEventListener('change',renderArena);
+
+    /* Init */
+    const requestedModel=new URLSearchParams(location.search).get('model');
+    if(requestedModel && RANKS.some(r=>r.name===requestedModel)){$('#lbSearch').value=requestedModel;lbState.search=requestedModel}
+    renderTable();
+    initCompareSelects();renderRadar();
+    initArenaSelects();renderArena();
+  </script>
+  <script src="../account-store.js"></script>
+  <script src="../account-nav.js"></script>
+</body>
+</html>

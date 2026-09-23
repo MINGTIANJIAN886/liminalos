@@ -1,0 +1,2 @@
+Built-in image_gen; AI-assisted illustrative scene, 2026-09-08.
+Prompt: photorealistic 3:1 ordinary university robotics workbench; small black wheeled rover with interchangeable camera, lidar and edge computing modules; natural daylight, restrained gray-green palette, generous space, no people, no laptop, no sci-fi or text overlays.
